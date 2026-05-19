@@ -4,26 +4,33 @@ __pycache__/
 *.egg-info/
 .ipynb_checkpoints/
 
-# 大模型文件（绝对不能传GitHub）
+# ESM-2 预训练权重（需自行下载，体积大）
+Rostlab/
 *.bin
-*.pth
-*.pt
-*.ckpt
-*.pkl
-*.h5
+*.safetensors
 
-# 数据集（只保留说明）
+# 数据集与特征（体积大，不上传）
 dataset/**/*.csv
+dataset/**/*.npy
+dataset/**/features/
 !dataset/**/README.md
 
-# 特征文件（运行后生成）
+# 特征提取脚本运行后生成的大文件（不应在 code/ 里）
 feature_extract/**/*.pkl
 feature_extract/**/*.npy
 
-# 结果输出
+# 训练临时输出（日志、中间epoch、非最佳模型）
 results/
 outputs/
 *.log
+checkpoints/          # 排除临时检查点文件夹（里面全是中间epoch）
+*.ckpt
+*.h5
+
+# 允许上传：你自己训练好的最佳模型（放在 weights/ 目录下）
+!weights/
+!weights/**/*.pth
+!weights/**/*.pt
 
 # IDE
 .idea/
@@ -32,14 +39,3 @@ outputs/
 # 系统文件
 .DS_Store
 Thumbs.db
-
-# ESM-2 预训练权重（需自行下载，体积大）
-Rostlab/
-
-# 提取后的特征文件（.npy 在 dataset 各子目录下）
-dataset/**/features/
-dataset/**/*.npy
-
-# 训练保存的模型检查点
-checkpoints/
-*.safetensors
