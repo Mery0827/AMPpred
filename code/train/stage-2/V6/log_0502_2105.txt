@@ -1,0 +1,795 @@
+================================================================================
+ Deep-AMPpred Stage-2 | V6-v6: Prior-Anchored Learnable α
+================================================================================
+Version: v6_mtl_learnable_adaptive
+Loss: LEARNABLE_ADAPTIVE=True | AUX=False
+Device: cuda
+Key Fix: logit-space prior | reg=0.5 | Kendall-style uncertainty
+================================================================================
+
+📋 Task Imbalance Preview & Alpha Config (V6-v6):
+  Ab: pos_ratio=0.063 | target=0.25 | init_logit=-1.56 | reg=0.5
+  Bs: pos_ratio=0.284 | target=0.40 | init_logit=-0.30 | reg=0.5
+  Ec: pos_ratio=0.885 | target=0.65 | init_logit=+1.04 | reg=0.5
+  Ef: pos_ratio=0.128 | target=0.25 | init_logit=-1.09 | reg=0.5
+  Kp: pos_ratio=0.148 | target=0.25 | init_logit=-1.17 | reg=0.5
+  Ml: pos_ratio=0.132 | target=0.25 | init_logit=-1.13 | reg=0.5
+  Pa: pos_ratio=0.496 | target=0.65 | init_logit=+0.50 | reg=0.5
+  Sa: pos_ratio=0.808 | target=0.65 | init_logit=+0.66 | reg=0.5
+  Se: pos_ratio=0.192 | target=0.40 | init_logit=-0.23 | reg=0.5
+  St: pos_ratio=0.156 | target=0.40 | init_logit=-0.15 | reg=0.5
+
+######################################################################
+# FOLD 1/5 | Prior-Anchored Learnable α (V6-v6)
+######################################################################
+  [Fold 1] Epoch   1 | Loss 0.360 | AvgMCC 0.168 | AvgAUC 0.600 | AvgGMean 0.488 | LR 0.002000 | α=['0.258', '0.451', '0.621', '0.198', '0.251', '0.195', '0.665', '0.650', '0.386', '0.458']
+  [Fold 1] Epoch   2 | Loss 0.332 | AvgMCC 0.200 | AvgAUC 0.636 | AvgGMean 0.565 | LR 0.001988 
+  [Fold 1] Epoch   3 | Loss 0.335 | AvgMCC 0.179 | AvgAUC 0.623 | AvgGMean 0.494 | LR 0.001951 
+  [Fold 1] Epoch   4 | Loss 0.312 | AvgMCC 0.237 | AvgAUC 0.660 | AvgGMean 0.574 | LR 0.001891 
+  [Fold 1] Epoch   5 | Loss 0.298 | AvgMCC 0.255 | AvgAUC 0.677 | AvgGMean 0.552 | LR 0.001809 
+  [Fold 1] Epoch   6 | Loss 0.288 | AvgMCC 0.274 | AvgAUC 0.696 | AvgGMean 0.568 | LR 0.001707 
+  [Fold 1] Epoch   7 | Loss 0.279 | AvgMCC 0.307 | AvgAUC 0.711 | AvgGMean 0.543 | LR 0.001588 
+  [Fold 1] Epoch   8 | Loss 0.268 | AvgMCC 0.345 | AvgAUC 0.745 | AvgGMean 0.593 | LR 0.001454 
+  [Fold 1] Epoch   9 | Loss 0.254 | AvgMCC 0.385 | AvgAUC 0.763 | AvgGMean 0.594 | LR 0.001309 
+  [Fold 1] Epoch  10 | Loss 0.251 | AvgMCC 0.405 | AvgAUC 0.786 | AvgGMean 0.613 | LR 0.001156 
+  [Fold 1] Epoch  11 | Loss 0.240 | AvgMCC 0.432 | AvgAUC 0.794 | AvgGMean 0.634 | LR 0.001000 | α=['0.264', '0.392', '0.622', '0.243', '0.262', '0.243', '0.618', '0.619', '0.392', '0.400']
+  [Fold 1] Epoch  12 | Loss 0.232 | AvgMCC 0.453 | AvgAUC 0.819 | AvgGMean 0.634 | LR 0.000844 
+  [Fold 1] Epoch  13 | Loss 0.224 | AvgMCC 0.478 | AvgAUC 0.821 | AvgGMean 0.645 | LR 0.000691 
+  [Fold 1] Epoch  14 | Loss 0.213 | AvgMCC 0.481 | AvgAUC 0.830 | AvgGMean 0.644 | LR 0.000546 
+  [Fold 1] Epoch  15 | Loss 0.200 | AvgMCC 0.509 | AvgAUC 0.838 | AvgGMean 0.684 | LR 0.000412 
+  [Fold 1] Epoch  16 | Loss 0.200 | AvgMCC 0.516 | AvgAUC 0.842 | AvgGMean 0.690 | LR 0.000293 
+  [Fold 1] Epoch  17 | Loss 0.182 | AvgMCC 0.526 | AvgAUC 0.850 | AvgGMean 0.670 | LR 0.000191 
+  [Fold 1] Epoch  18 | Loss 0.182 | AvgMCC 0.531 | AvgAUC 0.852 | AvgGMean 0.674 | LR 0.000109 
+  [Fold 1] Epoch  19 | Loss 0.175 | AvgMCC 0.528 | AvgAUC 0.853 | AvgGMean 0.680 | LR 0.000049 
+  [Fold 1] Epoch  20 | Loss 0.179 | AvgMCC 0.528 | AvgAUC 0.853 | AvgGMean 0.676 | LR 0.000012 
+  [Fold 1] Epoch  21 | Loss 0.221 | AvgMCC 0.450 | AvgAUC 0.811 | AvgGMean 0.612 | LR 0.002000 | α=['0.265', '0.391', '0.622', '0.261', '0.264', '0.262', '0.619', '0.621', '0.393', '0.396']
+  [Fold 1] Epoch  22 | Loss 0.220 | AvgMCC 0.496 | AvgAUC 0.829 | AvgGMean 0.635 | LR 0.001997 
+  [Fold 1] Epoch  23 | Loss 0.218 | AvgMCC 0.482 | AvgAUC 0.831 | AvgGMean 0.694 | LR 0.001988 
+  [Fold 1] Epoch  24 | Loss 0.207 | AvgMCC 0.496 | AvgAUC 0.835 | AvgGMean 0.659 | LR 0.001972 
+  [Fold 1] Epoch  25 | Loss 0.198 | AvgMCC 0.535 | AvgAUC 0.851 | AvgGMean 0.703 | LR 0.001951 
+  [Fold 1] Epoch  26 | Loss 0.192 | AvgMCC 0.516 | AvgAUC 0.842 | AvgGMean 0.711 | LR 0.001924 
+  [Fold 1] Epoch  27 | Loss 0.190 | AvgMCC 0.550 | AvgAUC 0.858 | AvgGMean 0.703 | LR 0.001891 
+  [Fold 1] Epoch  28 | Loss 0.180 | AvgMCC 0.580 | AvgAUC 0.871 | AvgGMean 0.720 | LR 0.001853 
+  [Fold 1] Epoch  29 | Loss 0.178 | AvgMCC 0.555 | AvgAUC 0.861 | AvgGMean 0.715 | LR 0.001809 
+  [Fold 1] Epoch  30 | Loss 0.173 | AvgMCC 0.582 | AvgAUC 0.876 | AvgGMean 0.743 | LR 0.001760 
+  [Fold 1] Epoch  31 | Loss 0.174 | AvgMCC 0.591 | AvgAUC 0.881 | AvgGMean 0.708 | LR 0.001707 | α=['0.268', '0.393', '0.624', '0.265', '0.266', '0.266', '0.619', '0.622', '0.398', '0.396']
+  [Fold 1] Epoch  32 | Loss 0.164 | AvgMCC 0.583 | AvgAUC 0.879 | AvgGMean 0.719 | LR 0.001649 
+  [Fold 1] Epoch  33 | Loss 0.156 | AvgMCC 0.595 | AvgAUC 0.885 | AvgGMean 0.724 | LR 0.001588 
+  [Fold 1] Epoch  34 | Loss 0.148 | AvgMCC 0.592 | AvgAUC 0.886 | AvgGMean 0.739 | LR 0.001522 
+  [Fold 1] Epoch  35 | Loss 0.142 | AvgMCC 0.602 | AvgAUC 0.887 | AvgGMean 0.758 | LR 0.001454 
+  [Fold 1] Epoch  36 | Loss 0.138 | AvgMCC 0.613 | AvgAUC 0.887 | AvgGMean 0.734 | LR 0.001383 
+  [Fold 1] Epoch  37 | Loss 0.139 | AvgMCC 0.615 | AvgAUC 0.891 | AvgGMean 0.757 | LR 0.001309 
+  [Fold 1] Epoch  38 | Loss 0.130 | AvgMCC 0.627 | AvgAUC 0.892 | AvgGMean 0.740 | LR 0.001233 
+  [Fold 1] Epoch  39 | Loss 0.129 | AvgMCC 0.631 | AvgAUC 0.893 | AvgGMean 0.763 | LR 0.001156 
+  [Fold 1] Epoch  40 | Loss 0.126 | AvgMCC 0.622 | AvgAUC 0.894 | AvgGMean 0.726 | LR 0.001078 
+  [Fold 1] Epoch  41 | Loss 0.123 | AvgMCC 0.639 | AvgAUC 0.899 | AvgGMean 0.752 | LR 0.001000 | α=['0.268', '0.397', '0.625', '0.267', '0.268', '0.268', '0.623', '0.624', '0.399', '0.399']
+  [Fold 1] Epoch  42 | Loss 0.119 | AvgMCC 0.627 | AvgAUC 0.896 | AvgGMean 0.754 | LR 0.000922 
+  [Fold 1] Epoch  43 | Loss 0.123 | AvgMCC 0.626 | AvgAUC 0.893 | AvgGMean 0.737 | LR 0.000844 
+  [Fold 1] Epoch  44 | Loss 0.117 | AvgMCC 0.626 | AvgAUC 0.895 | AvgGMean 0.769 | LR 0.000767 
+  [Fold 1] Epoch  45 | Loss 0.117 | AvgMCC 0.635 | AvgAUC 0.896 | AvgGMean 0.754 | LR 0.000691 
+  [Fold 1] Epoch  46 | Loss 0.114 | AvgMCC 0.634 | AvgAUC 0.897 | AvgGMean 0.760 | LR 0.000617 
+  [Fold 1] Epoch  47 | Loss 0.107 | AvgMCC 0.639 | AvgAUC 0.897 | AvgGMean 0.771 | LR 0.000546 
+  [Fold 1] Epoch  48 | Loss 0.110 | AvgMCC 0.642 | AvgAUC 0.897 | AvgGMean 0.779 | LR 0.000478 
+  [Fold 1] Epoch  49 | Loss 0.106 | AvgMCC 0.640 | AvgAUC 0.897 | AvgGMean 0.760 | LR 0.000412 
+  [Fold 1] Epoch  50 | Loss 0.104 | AvgMCC 0.643 | AvgAUC 0.899 | AvgGMean 0.754 | LR 0.000351 
+  [Fold 1] Epoch  51 | Loss 0.106 | AvgMCC 0.643 | AvgAUC 0.900 | AvgGMean 0.775 | LR 0.000293 | α=['0.269', '0.399', '0.625', '0.268', '0.268', '0.269', '0.625', '0.625', '0.399', '0.400']
+  [Fold 1] Epoch  52 | Loss 0.100 | AvgMCC 0.648 | AvgAUC 0.900 | AvgGMean 0.782 | LR 0.000240 
+  [Fold 1] Epoch  53 | Loss 0.105 | AvgMCC 0.648 | AvgAUC 0.900 | AvgGMean 0.784 | LR 0.000191 
+  [Fold 1] Epoch  54 | Loss 0.102 | AvgMCC 0.648 | AvgAUC 0.900 | AvgGMean 0.778 | LR 0.000147 
+  [Fold 1] Epoch  55 | Loss 0.098 | AvgMCC 0.649 | AvgAUC 0.899 | AvgGMean 0.784 | LR 0.000109 
+  [Fold 1] Epoch  56 | Loss 0.103 | AvgMCC 0.648 | AvgAUC 0.900 | AvgGMean 0.782 | LR 0.000076 
+  [Fold 1] Epoch  57 | Loss 0.101 | AvgMCC 0.646 | AvgAUC 0.900 | AvgGMean 0.774 | LR 0.000049 
+  [Fold 1] Epoch  58 | Loss 0.103 | AvgMCC 0.648 | AvgAUC 0.900 | AvgGMean 0.776 | LR 0.000028 
+  [Fold 1] Epoch  59 | Loss 0.105 | AvgMCC 0.648 | AvgAUC 0.900 | AvgGMean 0.775 | LR 0.000012 
+  [Fold 1] Epoch  60 | Loss 0.101 | AvgMCC 0.648 | AvgAUC 0.900 | AvgGMean 0.775 | LR 0.000003 
+  [Fold 1] Epoch  61 | Loss 0.120 | AvgMCC 0.609 | AvgAUC 0.874 | AvgGMean 0.744 | LR 0.002000 | α=['0.268', '0.399', '0.625', '0.268', '0.267', '0.269', '0.624', '0.624', '0.398', '0.400']
+  [Fold 1] Epoch  62 | Loss 0.139 | AvgMCC 0.600 | AvgAUC 0.863 | AvgGMean 0.730 | LR 0.001999 
+  [Fold 1] Epoch  63 | Loss 0.155 | AvgMCC 0.579 | AvgAUC 0.860 | AvgGMean 0.751 | LR 0.001997 
+  [Fold 1] Epoch  64 | Loss 0.153 | AvgMCC 0.584 | AvgAUC 0.866 | AvgGMean 0.736 | LR 0.001993 
+  [Fold 1] Epoch  65 | Loss 0.151 | AvgMCC 0.591 | AvgAUC 0.872 | AvgGMean 0.754 | LR 0.001988 
+  [Fold 1] Epoch  66 | Loss 0.143 | AvgMCC 0.589 | AvgAUC 0.873 | AvgGMean 0.745 | LR 0.001981 
+  [Fold 1] Epoch  67 | Loss 0.141 | AvgMCC 0.607 | AvgAUC 0.875 | AvgGMean 0.763 | LR 0.001972 
+  [Fold 1] Epoch  68 | Loss 0.133 | AvgMCC 0.611 | AvgAUC 0.881 | AvgGMean 0.753 | LR 0.001962 
+  [Fold 1] Epoch  69 | Loss 0.132 | AvgMCC 0.625 | AvgAUC 0.876 | AvgGMean 0.771 | LR 0.001951 
+  [Fold 1] Epoch  70 | Loss 0.129 | AvgMCC 0.629 | AvgAUC 0.886 | AvgGMean 0.778 | LR 0.001938 
+  [Fold 1] Epoch  71 | Loss 0.120 | AvgMCC 0.637 | AvgAUC 0.893 | AvgGMean 0.779 | LR 0.001924 | α=['0.268', '0.397', '0.624', '0.268', '0.267', '0.268', '0.623', '0.624', '0.399', '0.399']
+  [Fold 1] Epoch  72 | Loss 0.121 | AvgMCC 0.636 | AvgAUC 0.891 | AvgGMean 0.782 | LR 0.001908 
+  [Fold 1] Epoch  73 | Loss 0.123 | AvgMCC 0.632 | AvgAUC 0.886 | AvgGMean 0.764 | LR 0.001891 
+  [Fold 1] Epoch  74 | Loss 0.120 | AvgMCC 0.640 | AvgAUC 0.886 | AvgGMean 0.777 | LR 0.001872 
+  [Fold 1] Epoch  75 | Loss 0.120 | AvgMCC 0.638 | AvgAUC 0.879 | AvgGMean 0.772 | LR 0.001853 
+  [Fold 1] Epoch  76 | Loss 0.117 | AvgMCC 0.625 | AvgAUC 0.884 | AvgGMean 0.768 | LR 0.001831 
+  [Fold 1] Epoch  77 | Loss 0.107 | AvgMCC 0.641 | AvgAUC 0.885 | AvgGMean 0.769 | LR 0.001809 
+  [Fold 1] Epoch  78 | Loss 0.108 | AvgMCC 0.644 | AvgAUC 0.885 | AvgGMean 0.758 | LR 0.001785 
+  [Fold 1] Epoch  79 | Loss 0.110 | AvgMCC 0.645 | AvgAUC 0.890 | AvgGMean 0.755 | LR 0.001760 
+  [Fold 1] Epoch  80 | Loss 0.107 | AvgMCC 0.645 | AvgAUC 0.887 | AvgGMean 0.775 | LR 0.001734 
+  [Fold 1] Epoch  81 | Loss 0.108 | AvgMCC 0.647 | AvgAUC 0.887 | AvgGMean 0.767 | LR 0.001707 | α=['0.269', '0.398', '0.625', '0.268', '0.269', '0.269', '0.624', '0.625', '0.399', '0.399']
+  [Fold 1] Epoch  82 | Loss 0.108 | AvgMCC 0.648 | AvgAUC 0.895 | AvgGMean 0.779 | LR 0.001679 
+  [Fold 1] Epoch  83 | Loss 0.107 | AvgMCC 0.646 | AvgAUC 0.894 | AvgGMean 0.787 | LR 0.001649 
+  [Fold 1] Epoch  84 | Loss 0.106 | AvgMCC 0.646 | AvgAUC 0.892 | AvgGMean 0.782 | LR 0.001619 
+  [Fold 1] Epoch  85 | Loss 0.101 | AvgMCC 0.664 | AvgAUC 0.892 | AvgGMean 0.775 | LR 0.001588 
+  [Fold 1] Epoch  86 | Loss 0.100 | AvgMCC 0.662 | AvgAUC 0.893 | AvgGMean 0.780 | LR 0.001556 
+  [Fold 1] Epoch  87 | Loss 0.099 | AvgMCC 0.664 | AvgAUC 0.896 | AvgGMean 0.789 | LR 0.001522 
+  [Fold 1] Epoch  88 | Loss 0.104 | AvgMCC 0.665 | AvgAUC 0.896 | AvgGMean 0.804 | LR 0.001489 
+  [Fold 1] Epoch  89 | Loss 0.097 | AvgMCC 0.656 | AvgAUC 0.894 | AvgGMean 0.773 | LR 0.001454 
+  [Fold 1] Epoch  90 | Loss 0.100 | AvgMCC 0.660 | AvgAUC 0.896 | AvgGMean 0.783 | LR 0.001419 
+  [Fold 1] Epoch  91 | Loss 0.100 | AvgMCC 0.651 | AvgAUC 0.892 | AvgGMean 0.758 | LR 0.001383 | α=['0.269', '0.399', '0.626', '0.269', '0.268', '0.269', '0.625', '0.626', '0.400', '0.400']
+  [Fold 1] Epoch  92 | Loss 0.096 | AvgMCC 0.662 | AvgAUC 0.895 | AvgGMean 0.785 | LR 0.001346 
+  [Fold 1] Epoch  93 | Loss 0.100 | AvgMCC 0.655 | AvgAUC 0.894 | AvgGMean 0.757 | LR 0.001309 
+  [Fold 1] Epoch  94 | Loss 0.105 | AvgMCC 0.672 | AvgAUC 0.896 | AvgGMean 0.782 | LR 0.001271 
+  [Fold 1] Epoch  95 | Loss 0.096 | AvgMCC 0.665 | AvgAUC 0.896 | AvgGMean 0.780 | LR 0.001233 
+  [Fold 1] Epoch  96 | Loss 0.099 | AvgMCC 0.662 | AvgAUC 0.896 | AvgGMean 0.774 | LR 0.001195 
+  [Fold 1] Epoch  97 | Loss 0.094 | AvgMCC 0.661 | AvgAUC 0.896 | AvgGMean 0.785 | LR 0.001156 
+  [Fold 1] Epoch  98 | Loss 0.101 | AvgMCC 0.661 | AvgAUC 0.898 | AvgGMean 0.781 | LR 0.001118 
+  [Fold 1] Epoch  99 | Loss 0.097 | AvgMCC 0.661 | AvgAUC 0.894 | AvgGMean 0.785 | LR 0.001078 
+  [Fold 1] Epoch 100 | Loss 0.094 | AvgMCC 0.663 | AvgAUC 0.893 | AvgGMean 0.775 | LR 0.001039 
+  [Fold 1] Epoch 101 | Loss 0.094 | AvgMCC 0.658 | AvgAUC 0.894 | AvgGMean 0.775 | LR 0.001000 | α=['0.269', '0.400', '0.626', '0.269', '0.269', '0.269', '0.626', '0.626', '0.400', '0.400']
+  [Fold 1] Epoch 102 | Loss 0.094 | AvgMCC 0.664 | AvgAUC 0.895 | AvgGMean 0.779 | LR 0.000961 
+  [Fold 1] Epoch 103 | Loss 0.095 | AvgMCC 0.665 | AvgAUC 0.894 | AvgGMean 0.772 | LR 0.000922 
+  [Fold 1] Epoch 104 | Loss 0.098 | AvgMCC 0.663 | AvgAUC 0.897 | AvgGMean 0.789 | LR 0.000882 
+  [Fold 1] Epoch 105 | Loss 0.095 | AvgMCC 0.662 | AvgAUC 0.897 | AvgGMean 0.781 | LR 0.000844 
+  [Fold 1] Epoch 106 | Loss 0.096 | AvgMCC 0.662 | AvgAUC 0.894 | AvgGMean 0.777 | LR 0.000805 
+  [Fold 1] Epoch 107 | Loss 0.091 | AvgMCC 0.663 | AvgAUC 0.897 | AvgGMean 0.783 | LR 0.000767 
+  [Fold 1] Epoch 108 | Loss 0.092 | AvgMCC 0.664 | AvgAUC 0.897 | AvgGMean 0.786 | LR 0.000729 
+  [Fold 1] Epoch 109 | Loss 0.095 | AvgMCC 0.663 | AvgAUC 0.895 | AvgGMean 0.774 | LR 0.000691 
+  [Fold 1] Epoch 110 | Loss 0.094 | AvgMCC 0.663 | AvgAUC 0.895 | AvgGMean 0.790 | LR 0.000654 
+  [Fold 1] Epoch 111 | Loss 0.089 | AvgMCC 0.661 | AvgAUC 0.897 | AvgGMean 0.784 | LR 0.000617 | α=['0.269', '0.400', '0.626', '0.269', '0.269', '0.269', '0.626', '0.626', '0.400', '0.400']
+  [Fold 1] Epoch 112 | Loss 0.093 | AvgMCC 0.663 | AvgAUC 0.897 | AvgGMean 0.781 | LR 0.000581 
+  [Fold 1] Epoch 113 | Loss 0.093 | AvgMCC 0.664 | AvgAUC 0.898 | AvgGMean 0.770 | LR 0.000546 
+  [Fold 1] Epoch 114 | Loss 0.092 | AvgMCC 0.664 | AvgAUC 0.897 | AvgGMean 0.776 | LR 0.000511 
+  [Fold 1] Epoch 115 | Loss 0.092 | AvgMCC 0.663 | AvgAUC 0.897 | AvgGMean 0.760 | LR 0.000478 
+  [Fold 1] Epoch 116 | Loss 0.095 | AvgMCC 0.667 | AvgAUC 0.898 | AvgGMean 0.776 | LR 0.000444 
+  [Fold 1] Epoch 117 | Loss 0.092 | AvgMCC 0.661 | AvgAUC 0.898 | AvgGMean 0.794 | LR 0.000412 
+  [Fold 1] Epoch 118 | Loss 0.089 | AvgMCC 0.661 | AvgAUC 0.897 | AvgGMean 0.778 | LR 0.000381 
+  [Fold 1] Epoch 119 | Loss 0.091 | AvgMCC 0.659 | AvgAUC 0.899 | AvgGMean 0.766 | LR 0.000351 
+  [Fold 1] Epoch 120 | Loss 0.089 | AvgMCC 0.663 | AvgAUC 0.898 | AvgGMean 0.768 | LR 0.000321 
+  [Fold 1] Epoch 121 | Loss 0.089 | AvgMCC 0.665 | AvgAUC 0.899 | AvgGMean 0.772 | LR 0.000293 | α=['0.269', '0.400', '0.626', '0.269', '0.269', '0.269', '0.626', '0.626', '0.401', '0.400']
+  [Fold 1] Epoch 122 | Loss 0.091 | AvgMCC 0.661 | AvgAUC 0.899 | AvgGMean 0.776 | LR 0.000266 
+  [Fold 1] Epoch 123 | Loss 0.094 | AvgMCC 0.665 | AvgAUC 0.899 | AvgGMean 0.770 | LR 0.000240 
+  [Fold 1] Epoch 124 | Loss 0.093 | AvgMCC 0.666 | AvgAUC 0.898 | AvgGMean 0.777 | LR 0.000215 
+
+  🛑 Early stop at Epoch 124, best was Epoch 94
+
+  ✅ Fold 1 BEST AvgValMCC=0.6717 at Epoch 94
+     Ab: ValMCC=0.600 TestMCC=0.486 α=0.269 target=0.25
+     Bs: ValMCC=0.620 TestMCC=0.690 α=0.400 target=0.40
+     Ec: ValMCC=0.576 TestMCC=0.639 α=0.626 target=0.65
+     Ef: ValMCC=0.635 TestMCC=0.564 α=0.269 target=0.25
+     Kp: ValMCC=0.686 TestMCC=0.681 α=0.269 target=0.25
+     Ml: ValMCC=0.719 TestMCC=0.672 α=0.269 target=0.25
+     Pa: ValMCC=0.680 TestMCC=0.727 α=0.626 target=0.65
+     Sa: ValMCC=0.698 TestMCC=0.642 α=0.626 target=0.65
+     Se: ValMCC=0.716 TestMCC=0.794 α=0.400 target=0.40
+     St: ValMCC=0.728 TestMCC=0.748 α=0.400 target=0.40
+
+######################################################################
+# FOLD 2/5 | Prior-Anchored Learnable α (V6-v6)
+######################################################################
+  [Fold 2] Epoch   1 | Loss 0.362 | AvgMCC 0.193 | AvgAUC 0.631 | AvgGMean 0.582 | LR 0.002000 | α=['0.228', '0.401', '0.658', '0.208', '0.230', '0.228', '0.717', '0.693', '0.448', '0.480']
+  [Fold 2] Epoch   2 | Loss 0.341 | AvgMCC 0.206 | AvgAUC 0.636 | AvgGMean 0.568 | LR 0.001988 
+  [Fold 2] Epoch   3 | Loss 0.331 | AvgMCC 0.198 | AvgAUC 0.641 | AvgGMean 0.547 | LR 0.001951 
+  [Fold 2] Epoch   4 | Loss 0.322 | AvgMCC 0.257 | AvgAUC 0.692 | AvgGMean 0.602 | LR 0.001891 
+  [Fold 2] Epoch   5 | Loss 0.305 | AvgMCC 0.283 | AvgAUC 0.713 | AvgGMean 0.627 | LR 0.001809 
+  [Fold 2] Epoch   6 | Loss 0.298 | AvgMCC 0.291 | AvgAUC 0.708 | AvgGMean 0.559 | LR 0.001707 
+  [Fold 2] Epoch   7 | Loss 0.282 | AvgMCC 0.327 | AvgAUC 0.742 | AvgGMean 0.600 | LR 0.001588 
+  [Fold 2] Epoch   8 | Loss 0.275 | AvgMCC 0.355 | AvgAUC 0.756 | AvgGMean 0.616 | LR 0.001454 
+  [Fold 2] Epoch   9 | Loss 0.262 | AvgMCC 0.393 | AvgAUC 0.768 | AvgGMean 0.596 | LR 0.001309 
+  [Fold 2] Epoch  10 | Loss 0.255 | AvgMCC 0.418 | AvgAUC 0.786 | AvgGMean 0.621 | LR 0.001156 
+  [Fold 2] Epoch  11 | Loss 0.240 | AvgMCC 0.437 | AvgAUC 0.808 | AvgGMean 0.667 | LR 0.001000 | α=['0.261', '0.388', '0.622', '0.251', '0.260', '0.263', '0.647', '0.633', '0.395', '0.409']
+  [Fold 2] Epoch  12 | Loss 0.234 | AvgMCC 0.455 | AvgAUC 0.817 | AvgGMean 0.629 | LR 0.000844 
+  [Fold 2] Epoch  13 | Loss 0.223 | AvgMCC 0.456 | AvgAUC 0.826 | AvgGMean 0.642 | LR 0.000691 
+  [Fold 2] Epoch  14 | Loss 0.211 | AvgMCC 0.513 | AvgAUC 0.839 | AvgGMean 0.672 | LR 0.000546 
+  [Fold 2] Epoch  15 | Loss 0.201 | AvgMCC 0.519 | AvgAUC 0.842 | AvgGMean 0.701 | LR 0.000412 
+  [Fold 2] Epoch  16 | Loss 0.189 | AvgMCC 0.513 | AvgAUC 0.847 | AvgGMean 0.691 | LR 0.000293 
+  [Fold 2] Epoch  17 | Loss 0.192 | AvgMCC 0.534 | AvgAUC 0.855 | AvgGMean 0.696 | LR 0.000191 
+  [Fold 2] Epoch  18 | Loss 0.180 | AvgMCC 0.536 | AvgAUC 0.857 | AvgGMean 0.713 | LR 0.000109 
+  [Fold 2] Epoch  19 | Loss 0.179 | AvgMCC 0.539 | AvgAUC 0.858 | AvgGMean 0.707 | LR 0.000049 
+  [Fold 2] Epoch  20 | Loss 0.175 | AvgMCC 0.541 | AvgAUC 0.858 | AvgGMean 0.698 | LR 0.000012 
+  [Fold 2] Epoch  21 | Loss 0.219 | AvgMCC 0.468 | AvgAUC 0.816 | AvgGMean 0.664 | LR 0.002000 | α=['0.266', '0.390', '0.623', '0.264', '0.264', '0.266', '0.623', '0.622', '0.394', '0.396']
+  [Fold 2] Epoch  22 | Loss 0.215 | AvgMCC 0.489 | AvgAUC 0.824 | AvgGMean 0.665 | LR 0.001997 
+  [Fold 2] Epoch  23 | Loss 0.215 | AvgMCC 0.504 | AvgAUC 0.828 | AvgGMean 0.681 | LR 0.001988 
+  [Fold 2] Epoch  24 | Loss 0.209 | AvgMCC 0.517 | AvgAUC 0.838 | AvgGMean 0.658 | LR 0.001972 
+  [Fold 2] Epoch  25 | Loss 0.207 | AvgMCC 0.520 | AvgAUC 0.844 | AvgGMean 0.686 | LR 0.001951 
+  [Fold 2] Epoch  26 | Loss 0.198 | AvgMCC 0.539 | AvgAUC 0.853 | AvgGMean 0.697 | LR 0.001924 
+  [Fold 2] Epoch  27 | Loss 0.194 | AvgMCC 0.551 | AvgAUC 0.860 | AvgGMean 0.716 | LR 0.001891 
+  [Fold 2] Epoch  28 | Loss 0.186 | AvgMCC 0.558 | AvgAUC 0.863 | AvgGMean 0.704 | LR 0.001853 
+  [Fold 2] Epoch  29 | Loss 0.181 | AvgMCC 0.563 | AvgAUC 0.865 | AvgGMean 0.719 | LR 0.001809 
+  [Fold 2] Epoch  30 | Loss 0.170 | AvgMCC 0.587 | AvgAUC 0.877 | AvgGMean 0.717 | LR 0.001760 
+  [Fold 2] Epoch  31 | Loss 0.159 | AvgMCC 0.581 | AvgAUC 0.869 | AvgGMean 0.716 | LR 0.001707 | α=['0.268', '0.394', '0.623', '0.265', '0.266', '0.267', '0.619', '0.622', '0.395', '0.396']
+  [Fold 2] Epoch  32 | Loss 0.165 | AvgMCC 0.594 | AvgAUC 0.875 | AvgGMean 0.718 | LR 0.001649 
+  [Fold 2] Epoch  33 | Loss 0.157 | AvgMCC 0.609 | AvgAUC 0.884 | AvgGMean 0.749 | LR 0.001588 
+  [Fold 2] Epoch  34 | Loss 0.147 | AvgMCC 0.617 | AvgAUC 0.884 | AvgGMean 0.767 | LR 0.001522 
+  [Fold 2] Epoch  35 | Loss 0.147 | AvgMCC 0.612 | AvgAUC 0.880 | AvgGMean 0.747 | LR 0.001454 
+  [Fold 2] Epoch  36 | Loss 0.142 | AvgMCC 0.597 | AvgAUC 0.878 | AvgGMean 0.738 | LR 0.001383 
+  [Fold 2] Epoch  37 | Loss 0.140 | AvgMCC 0.612 | AvgAUC 0.881 | AvgGMean 0.757 | LR 0.001309 
+  [Fold 2] Epoch  38 | Loss 0.132 | AvgMCC 0.619 | AvgAUC 0.885 | AvgGMean 0.749 | LR 0.001233 
+  [Fold 2] Epoch  39 | Loss 0.131 | AvgMCC 0.611 | AvgAUC 0.890 | AvgGMean 0.739 | LR 0.001156 
+  [Fold 2] Epoch  40 | Loss 0.125 | AvgMCC 0.631 | AvgAUC 0.894 | AvgGMean 0.752 | LR 0.001078 
+  [Fold 2] Epoch  41 | Loss 0.121 | AvgMCC 0.626 | AvgAUC 0.889 | AvgGMean 0.760 | LR 0.001000 | α=['0.268', '0.397', '0.625', '0.267', '0.268', '0.268', '0.622', '0.624', '0.398', '0.398']
+  [Fold 2] Epoch  42 | Loss 0.121 | AvgMCC 0.633 | AvgAUC 0.891 | AvgGMean 0.767 | LR 0.000922 
+  [Fold 2] Epoch  43 | Loss 0.116 | AvgMCC 0.634 | AvgAUC 0.892 | AvgGMean 0.751 | LR 0.000844 
+  [Fold 2] Epoch  44 | Loss 0.114 | AvgMCC 0.637 | AvgAUC 0.895 | AvgGMean 0.761 | LR 0.000767 
+  [Fold 2] Epoch  45 | Loss 0.109 | AvgMCC 0.630 | AvgAUC 0.897 | AvgGMean 0.758 | LR 0.000691 
+  [Fold 2] Epoch  46 | Loss 0.108 | AvgMCC 0.639 | AvgAUC 0.893 | AvgGMean 0.764 | LR 0.000617 
+  [Fold 2] Epoch  47 | Loss 0.106 | AvgMCC 0.637 | AvgAUC 0.895 | AvgGMean 0.773 | LR 0.000546 
+  [Fold 2] Epoch  48 | Loss 0.108 | AvgMCC 0.643 | AvgAUC 0.895 | AvgGMean 0.786 | LR 0.000478 
+  [Fold 2] Epoch  49 | Loss 0.105 | AvgMCC 0.643 | AvgAUC 0.895 | AvgGMean 0.789 | LR 0.000412 
+  [Fold 2] Epoch  50 | Loss 0.107 | AvgMCC 0.640 | AvgAUC 0.894 | AvgGMean 0.776 | LR 0.000351 
+  [Fold 2] Epoch  51 | Loss 0.102 | AvgMCC 0.639 | AvgAUC 0.897 | AvgGMean 0.785 | LR 0.000293 | α=['0.269', '0.399', '0.626', '0.268', '0.268', '0.269', '0.624', '0.625', '0.399', '0.399']
+  [Fold 2] Epoch  52 | Loss 0.102 | AvgMCC 0.637 | AvgAUC 0.896 | AvgGMean 0.780 | LR 0.000240 
+  [Fold 2] Epoch  53 | Loss 0.105 | AvgMCC 0.640 | AvgAUC 0.895 | AvgGMean 0.785 | LR 0.000191 
+  [Fold 2] Epoch  54 | Loss 0.102 | AvgMCC 0.644 | AvgAUC 0.897 | AvgGMean 0.783 | LR 0.000147 
+  [Fold 2] Epoch  55 | Loss 0.102 | AvgMCC 0.645 | AvgAUC 0.897 | AvgGMean 0.780 | LR 0.000109 
+  [Fold 2] Epoch  56 | Loss 0.099 | AvgMCC 0.643 | AvgAUC 0.897 | AvgGMean 0.777 | LR 0.000076 
+  [Fold 2] Epoch  57 | Loss 0.101 | AvgMCC 0.645 | AvgAUC 0.897 | AvgGMean 0.778 | LR 0.000049 
+  [Fold 2] Epoch  58 | Loss 0.099 | AvgMCC 0.644 | AvgAUC 0.896 | AvgGMean 0.779 | LR 0.000028 
+  [Fold 2] Epoch  59 | Loss 0.101 | AvgMCC 0.645 | AvgAUC 0.897 | AvgGMean 0.781 | LR 0.000012 
+  [Fold 2] Epoch  60 | Loss 0.102 | AvgMCC 0.646 | AvgAUC 0.897 | AvgGMean 0.781 | LR 0.000003 
+  [Fold 2] Epoch  61 | Loss 0.118 | AvgMCC 0.599 | AvgAUC 0.873 | AvgGMean 0.744 | LR 0.002000 | α=['0.269', '0.397', '0.625', '0.268', '0.268', '0.268', '0.625', '0.625', '0.399', '0.400']
+  [Fold 2] Epoch  62 | Loss 0.152 | AvgMCC 0.583 | AvgAUC 0.867 | AvgGMean 0.745 | LR 0.001999 
+  [Fold 2] Epoch  63 | Loss 0.156 | AvgMCC 0.562 | AvgAUC 0.867 | AvgGMean 0.736 | LR 0.001997 
+  [Fold 2] Epoch  64 | Loss 0.153 | AvgMCC 0.579 | AvgAUC 0.873 | AvgGMean 0.723 | LR 0.001993 
+  [Fold 2] Epoch  65 | Loss 0.147 | AvgMCC 0.600 | AvgAUC 0.873 | AvgGMean 0.724 | LR 0.001988 
+  [Fold 2] Epoch  66 | Loss 0.147 | AvgMCC 0.596 | AvgAUC 0.861 | AvgGMean 0.727 | LR 0.001981 
+  [Fold 2] Epoch  67 | Loss 0.142 | AvgMCC 0.611 | AvgAUC 0.883 | AvgGMean 0.764 | LR 0.001972 
+  [Fold 2] Epoch  68 | Loss 0.130 | AvgMCC 0.602 | AvgAUC 0.870 | AvgGMean 0.751 | LR 0.001962 
+  [Fold 2] Epoch  69 | Loss 0.134 | AvgMCC 0.625 | AvgAUC 0.891 | AvgGMean 0.768 | LR 0.001951 
+  [Fold 2] Epoch  70 | Loss 0.128 | AvgMCC 0.622 | AvgAUC 0.886 | AvgGMean 0.760 | LR 0.001938 
+  [Fold 2] Epoch  71 | Loss 0.128 | AvgMCC 0.630 | AvgAUC 0.891 | AvgGMean 0.747 | LR 0.001924 | α=['0.268', '0.397', '0.624', '0.268', '0.268', '0.268', '0.623', '0.624', '0.398', '0.398']
+  [Fold 2] Epoch  72 | Loss 0.122 | AvgMCC 0.620 | AvgAUC 0.883 | AvgGMean 0.764 | LR 0.001908 
+  [Fold 2] Epoch  73 | Loss 0.121 | AvgMCC 0.636 | AvgAUC 0.888 | AvgGMean 0.771 | LR 0.001891 
+  [Fold 2] Epoch  74 | Loss 0.119 | AvgMCC 0.636 | AvgAUC 0.890 | AvgGMean 0.779 | LR 0.001872 
+  [Fold 2] Epoch  75 | Loss 0.117 | AvgMCC 0.633 | AvgAUC 0.888 | AvgGMean 0.741 | LR 0.001853 
+  [Fold 2] Epoch  76 | Loss 0.113 | AvgMCC 0.638 | AvgAUC 0.887 | AvgGMean 0.750 | LR 0.001831 
+  [Fold 2] Epoch  77 | Loss 0.106 | AvgMCC 0.646 | AvgAUC 0.889 | AvgGMean 0.756 | LR 0.001809 
+  [Fold 2] Epoch  78 | Loss 0.109 | AvgMCC 0.644 | AvgAUC 0.889 | AvgGMean 0.761 | LR 0.001785 
+  [Fold 2] Epoch  79 | Loss 0.112 | AvgMCC 0.637 | AvgAUC 0.887 | AvgGMean 0.773 | LR 0.001760 
+  [Fold 2] Epoch  80 | Loss 0.109 | AvgMCC 0.638 | AvgAUC 0.887 | AvgGMean 0.759 | LR 0.001734 
+  [Fold 2] Epoch  81 | Loss 0.105 | AvgMCC 0.630 | AvgAUC 0.883 | AvgGMean 0.769 | LR 0.001707 | α=['0.269', '0.398', '0.626', '0.268', '0.268', '0.269', '0.624', '0.625', '0.399', '0.399']
+  [Fold 2] Epoch  82 | Loss 0.104 | AvgMCC 0.647 | AvgAUC 0.890 | AvgGMean 0.767 | LR 0.001679 
+  [Fold 2] Epoch  83 | Loss 0.106 | AvgMCC 0.639 | AvgAUC 0.883 | AvgGMean 0.767 | LR 0.001649 
+  [Fold 2] Epoch  84 | Loss 0.104 | AvgMCC 0.648 | AvgAUC 0.888 | AvgGMean 0.762 | LR 0.001619 
+  [Fold 2] Epoch  85 | Loss 0.101 | AvgMCC 0.643 | AvgAUC 0.890 | AvgGMean 0.764 | LR 0.001588 
+  [Fold 2] Epoch  86 | Loss 0.101 | AvgMCC 0.652 | AvgAUC 0.882 | AvgGMean 0.767 | LR 0.001556 
+  [Fold 2] Epoch  87 | Loss 0.101 | AvgMCC 0.650 | AvgAUC 0.888 | AvgGMean 0.771 | LR 0.001522 
+  [Fold 2] Epoch  88 | Loss 0.103 | AvgMCC 0.648 | AvgAUC 0.886 | AvgGMean 0.777 | LR 0.001489 
+  [Fold 2] Epoch  89 | Loss 0.102 | AvgMCC 0.652 | AvgAUC 0.892 | AvgGMean 0.769 | LR 0.001454 
+  [Fold 2] Epoch  90 | Loss 0.095 | AvgMCC 0.645 | AvgAUC 0.886 | AvgGMean 0.756 | LR 0.001419 
+  [Fold 2] Epoch  91 | Loss 0.094 | AvgMCC 0.654 | AvgAUC 0.893 | AvgGMean 0.759 | LR 0.001383 | α=['0.269', '0.399', '0.626', '0.269', '0.269', '0.269', '0.625', '0.625', '0.400', '0.400']
+  [Fold 2] Epoch  92 | Loss 0.099 | AvgMCC 0.650 | AvgAUC 0.893 | AvgGMean 0.764 | LR 0.001346 
+  [Fold 2] Epoch  93 | Loss 0.099 | AvgMCC 0.653 | AvgAUC 0.888 | AvgGMean 0.779 | LR 0.001309 
+  [Fold 2] Epoch  94 | Loss 0.100 | AvgMCC 0.649 | AvgAUC 0.885 | AvgGMean 0.765 | LR 0.001271 
+  [Fold 2] Epoch  95 | Loss 0.096 | AvgMCC 0.649 | AvgAUC 0.885 | AvgGMean 0.762 | LR 0.001233 
+  [Fold 2] Epoch  96 | Loss 0.095 | AvgMCC 0.652 | AvgAUC 0.889 | AvgGMean 0.758 | LR 0.001195 
+  [Fold 2] Epoch  97 | Loss 0.096 | AvgMCC 0.653 | AvgAUC 0.892 | AvgGMean 0.771 | LR 0.001156 
+  [Fold 2] Epoch  98 | Loss 0.095 | AvgMCC 0.655 | AvgAUC 0.890 | AvgGMean 0.774 | LR 0.001118 
+  [Fold 2] Epoch  99 | Loss 0.094 | AvgMCC 0.651 | AvgAUC 0.892 | AvgGMean 0.770 | LR 0.001078 
+  [Fold 2] Epoch 100 | Loss 0.097 | AvgMCC 0.651 | AvgAUC 0.893 | AvgGMean 0.761 | LR 0.001039 
+  [Fold 2] Epoch 101 | Loss 0.097 | AvgMCC 0.659 | AvgAUC 0.893 | AvgGMean 0.767 | LR 0.001000 | α=['0.269', '0.399', '0.626', '0.269', '0.269', '0.269', '0.626', '0.626', '0.400', '0.400']
+  [Fold 2] Epoch 102 | Loss 0.096 | AvgMCC 0.659 | AvgAUC 0.895 | AvgGMean 0.780 | LR 0.000961 
+  [Fold 2] Epoch 103 | Loss 0.092 | AvgMCC 0.663 | AvgAUC 0.893 | AvgGMean 0.777 | LR 0.000922 
+  [Fold 2] Epoch 104 | Loss 0.094 | AvgMCC 0.658 | AvgAUC 0.892 | AvgGMean 0.777 | LR 0.000882 
+  [Fold 2] Epoch 105 | Loss 0.094 | AvgMCC 0.659 | AvgAUC 0.894 | AvgGMean 0.776 | LR 0.000844 
+  [Fold 2] Epoch 106 | Loss 0.094 | AvgMCC 0.661 | AvgAUC 0.893 | AvgGMean 0.767 | LR 0.000805 
+  [Fold 2] Epoch 107 | Loss 0.094 | AvgMCC 0.659 | AvgAUC 0.894 | AvgGMean 0.768 | LR 0.000767 
+  [Fold 2] Epoch 108 | Loss 0.093 | AvgMCC 0.657 | AvgAUC 0.893 | AvgGMean 0.774 | LR 0.000729 
+  [Fold 2] Epoch 109 | Loss 0.092 | AvgMCC 0.663 | AvgAUC 0.893 | AvgGMean 0.768 | LR 0.000691 
+  [Fold 2] Epoch 110 | Loss 0.095 | AvgMCC 0.661 | AvgAUC 0.897 | AvgGMean 0.770 | LR 0.000654 
+  [Fold 2] Epoch 111 | Loss 0.093 | AvgMCC 0.662 | AvgAUC 0.896 | AvgGMean 0.776 | LR 0.000617 | α=['0.269', '0.400', '0.626', '0.269', '0.269', '0.269', '0.626', '0.626', '0.400', '0.400']
+  [Fold 2] Epoch 112 | Loss 0.092 | AvgMCC 0.667 | AvgAUC 0.893 | AvgGMean 0.760 | LR 0.000581 
+  [Fold 2] Epoch 113 | Loss 0.093 | AvgMCC 0.659 | AvgAUC 0.892 | AvgGMean 0.775 | LR 0.000546 
+  [Fold 2] Epoch 114 | Loss 0.092 | AvgMCC 0.664 | AvgAUC 0.894 | AvgGMean 0.774 | LR 0.000511 
+  [Fold 2] Epoch 115 | Loss 0.093 | AvgMCC 0.662 | AvgAUC 0.895 | AvgGMean 0.771 | LR 0.000478 
+  [Fold 2] Epoch 116 | Loss 0.090 | AvgMCC 0.662 | AvgAUC 0.893 | AvgGMean 0.770 | LR 0.000444 
+  [Fold 2] Epoch 117 | Loss 0.092 | AvgMCC 0.662 | AvgAUC 0.894 | AvgGMean 0.769 | LR 0.000412 
+  [Fold 2] Epoch 118 | Loss 0.093 | AvgMCC 0.663 | AvgAUC 0.897 | AvgGMean 0.771 | LR 0.000381 
+  [Fold 2] Epoch 119 | Loss 0.094 | AvgMCC 0.663 | AvgAUC 0.897 | AvgGMean 0.776 | LR 0.000351 
+  [Fold 2] Epoch 120 | Loss 0.092 | AvgMCC 0.665 | AvgAUC 0.896 | AvgGMean 0.770 | LR 0.000321 
+  [Fold 2] Epoch 121 | Loss 0.091 | AvgMCC 0.662 | AvgAUC 0.896 | AvgGMean 0.769 | LR 0.000293 | α=['0.269', '0.400', '0.626', '0.269', '0.269', '0.269', '0.626', '0.626', '0.400', '0.400']
+  [Fold 2] Epoch 122 | Loss 0.091 | AvgMCC 0.662 | AvgAUC 0.896 | AvgGMean 0.768 | LR 0.000266 
+  [Fold 2] Epoch 123 | Loss 0.094 | AvgMCC 0.659 | AvgAUC 0.896 | AvgGMean 0.761 | LR 0.000240 
+  [Fold 2] Epoch 124 | Loss 0.089 | AvgMCC 0.661 | AvgAUC 0.896 | AvgGMean 0.774 | LR 0.000215 
+  [Fold 2] Epoch 125 | Loss 0.090 | AvgMCC 0.665 | AvgAUC 0.896 | AvgGMean 0.777 | LR 0.000191 
+  [Fold 2] Epoch 126 | Loss 0.095 | AvgMCC 0.662 | AvgAUC 0.896 | AvgGMean 0.773 | LR 0.000169 
+  [Fold 2] Epoch 127 | Loss 0.091 | AvgMCC 0.662 | AvgAUC 0.897 | AvgGMean 0.771 | LR 0.000147 
+  [Fold 2] Epoch 128 | Loss 0.095 | AvgMCC 0.663 | AvgAUC 0.897 | AvgGMean 0.777 | LR 0.000128 
+  [Fold 2] Epoch 129 | Loss 0.089 | AvgMCC 0.663 | AvgAUC 0.897 | AvgGMean 0.772 | LR 0.000109 
+  [Fold 2] Epoch 130 | Loss 0.091 | AvgMCC 0.662 | AvgAUC 0.897 | AvgGMean 0.775 | LR 0.000092 
+  [Fold 2] Epoch 131 | Loss 0.091 | AvgMCC 0.663 | AvgAUC 0.897 | AvgGMean 0.770 | LR 0.000076 | α=['0.269', '0.400', '0.626', '0.269', '0.269', '0.269', '0.626', '0.626', '0.400', '0.400']
+  [Fold 2] Epoch 132 | Loss 0.087 | AvgMCC 0.663 | AvgAUC 0.897 | AvgGMean 0.771 | LR 0.000062 
+  [Fold 2] Epoch 133 | Loss 0.088 | AvgMCC 0.663 | AvgAUC 0.897 | AvgGMean 0.770 | LR 0.000049 
+  [Fold 2] Epoch 134 | Loss 0.092 | AvgMCC 0.663 | AvgAUC 0.897 | AvgGMean 0.771 | LR 0.000038 
+  [Fold 2] Epoch 135 | Loss 0.092 | AvgMCC 0.662 | AvgAUC 0.897 | AvgGMean 0.771 | LR 0.000028 
+  [Fold 2] Epoch 136 | Loss 0.090 | AvgMCC 0.662 | AvgAUC 0.897 | AvgGMean 0.770 | LR 0.000019 
+  [Fold 2] Epoch 137 | Loss 0.087 | AvgMCC 0.663 | AvgAUC 0.897 | AvgGMean 0.771 | LR 0.000012 
+  [Fold 2] Epoch 138 | Loss 0.088 | AvgMCC 0.662 | AvgAUC 0.897 | AvgGMean 0.771 | LR 0.000007 
+  [Fold 2] Epoch 139 | Loss 0.089 | AvgMCC 0.662 | AvgAUC 0.897 | AvgGMean 0.771 | LR 0.000003 
+  [Fold 2] Epoch 140 | Loss 0.090 | AvgMCC 0.662 | AvgAUC 0.897 | AvgGMean 0.771 | LR 0.000001 
+  [Fold 2] Epoch 141 | Loss 0.108 | AvgMCC 0.581 | AvgAUC 0.854 | AvgGMean 0.742 | LR 0.002000 | α=['0.269', '0.398', '0.625', '0.269', '0.269', '0.269', '0.625', '0.626', '0.400', '0.400']
+  [Fold 2] Epoch 142 | Loss 0.181 | AvgMCC 0.549 | AvgAUC 0.837 | AvgGMean 0.700 | LR 0.002000 
+
+  🛑 Early stop at Epoch 142, best was Epoch 112
+
+  ✅ Fold 2 BEST AvgValMCC=0.6673 at Epoch 112
+     Ab: ValMCC=0.567 TestMCC=0.367 α=0.266 target=0.25
+     Bs: ValMCC=0.509 TestMCC=0.607 α=0.392 target=0.40
+     Ec: ValMCC=0.406 TestMCC=0.451 α=0.622 target=0.65
+     Ef: ValMCC=0.498 TestMCC=0.393 α=0.265 target=0.25
+     Kp: ValMCC=0.526 TestMCC=0.496 α=0.265 target=0.25
+     Ml: ValMCC=0.622 TestMCC=0.593 α=0.265 target=0.25
+     Pa: ValMCC=0.525 TestMCC=0.577 α=0.621 target=0.65
+     Sa: ValMCC=0.530 TestMCC=0.505 α=0.622 target=0.65
+     Se: ValMCC=0.630 TestMCC=0.624 α=0.395 target=0.40
+     St: ValMCC=0.673 TestMCC=0.565 α=0.397 target=0.40
+
+######################################################################
+# FOLD 3/5 | Prior-Anchored Learnable α (V6-v6)
+######################################################################
+  [Fold 3] Epoch   1 | Loss 0.367 | AvgMCC 0.162 | AvgAUC 0.602 | AvgGMean 0.508 | LR 0.002000 | α=['0.284', '0.467', '0.622', '0.243', '0.269', '0.240', '0.735', '0.728', '0.444', '0.428']
+  [Fold 3] Epoch   2 | Loss 0.344 | AvgMCC 0.225 | AvgAUC 0.654 | AvgGMean 0.533 | LR 0.001988 
+  [Fold 3] Epoch   3 | Loss 0.339 | AvgMCC 0.247 | AvgAUC 0.669 | AvgGMean 0.588 | LR 0.001951 
+  [Fold 3] Epoch   4 | Loss 0.315 | AvgMCC 0.256 | AvgAUC 0.685 | AvgGMean 0.586 | LR 0.001891 
+  [Fold 3] Epoch   5 | Loss 0.301 | AvgMCC 0.283 | AvgAUC 0.711 | AvgGMean 0.588 | LR 0.001809 
+  [Fold 3] Epoch   6 | Loss 0.305 | AvgMCC 0.318 | AvgAUC 0.736 | AvgGMean 0.611 | LR 0.001707 
+  [Fold 3] Epoch   7 | Loss 0.277 | AvgMCC 0.362 | AvgAUC 0.762 | AvgGMean 0.603 | LR 0.001588 
+  [Fold 3] Epoch   8 | Loss 0.261 | AvgMCC 0.421 | AvgAUC 0.793 | AvgGMean 0.658 | LR 0.001454 
+  [Fold 3] Epoch   9 | Loss 0.255 | AvgMCC 0.416 | AvgAUC 0.790 | AvgGMean 0.659 | LR 0.001309 
+  [Fold 3] Epoch  10 | Loss 0.257 | AvgMCC 0.433 | AvgAUC 0.802 | AvgGMean 0.667 | LR 0.001156 
+  [Fold 3] Epoch  11 | Loss 0.234 | AvgMCC 0.466 | AvgAUC 0.821 | AvgGMean 0.663 | LR 0.001000 | α=['0.264', '0.400', '0.622', '0.263', '0.263', '0.264', '0.673', '0.666', '0.393', '0.392']
+  [Fold 3] Epoch  12 | Loss 0.230 | AvgMCC 0.498 | AvgAUC 0.834 | AvgGMean 0.668 | LR 0.000844 
+  [Fold 3] Epoch  13 | Loss 0.221 | AvgMCC 0.510 | AvgAUC 0.842 | AvgGMean 0.665 | LR 0.000691 
+  [Fold 3] Epoch  14 | Loss 0.210 | AvgMCC 0.527 | AvgAUC 0.846 | AvgGMean 0.665 | LR 0.000546 
+  [Fold 3] Epoch  15 | Loss 0.199 | AvgMCC 0.528 | AvgAUC 0.853 | AvgGMean 0.695 | LR 0.000412 
+  [Fold 3] Epoch  16 | Loss 0.188 | AvgMCC 0.544 | AvgAUC 0.857 | AvgGMean 0.737 | LR 0.000293 
+  [Fold 3] Epoch  17 | Loss 0.180 | AvgMCC 0.562 | AvgAUC 0.862 | AvgGMean 0.718 | LR 0.000191 
+  [Fold 3] Epoch  18 | Loss 0.175 | AvgMCC 0.563 | AvgAUC 0.865 | AvgGMean 0.721 | LR 0.000109 
+  [Fold 3] Epoch  19 | Loss 0.177 | AvgMCC 0.560 | AvgAUC 0.865 | AvgGMean 0.721 | LR 0.000049 
+  [Fold 3] Epoch  20 | Loss 0.169 | AvgMCC 0.561 | AvgAUC 0.865 | AvgGMean 0.725 | LR 0.000012 
+  [Fold 3] Epoch  21 | Loss 0.213 | AvgMCC 0.497 | AvgAUC 0.827 | AvgGMean 0.669 | LR 0.002000 | α=['0.266', '0.393', '0.622', '0.265', '0.264', '0.266', '0.633', '0.632', '0.395', '0.395']
+  [Fold 3] Epoch  22 | Loss 0.211 | AvgMCC 0.506 | AvgAUC 0.844 | AvgGMean 0.689 | LR 0.001997 
+  [Fold 3] Epoch  23 | Loss 0.218 | AvgMCC 0.508 | AvgAUC 0.842 | AvgGMean 0.704 | LR 0.001988 
+  [Fold 3] Epoch  24 | Loss 0.215 | AvgMCC 0.546 | AvgAUC 0.848 | AvgGMean 0.736 | LR 0.001972 
+  [Fold 3] Epoch  25 | Loss 0.195 | AvgMCC 0.560 | AvgAUC 0.851 | AvgGMean 0.726 | LR 0.001951 
+  [Fold 3] Epoch  26 | Loss 0.196 | AvgMCC 0.569 | AvgAUC 0.857 | AvgGMean 0.712 | LR 0.001924 
+  [Fold 3] Epoch  27 | Loss 0.188 | AvgMCC 0.557 | AvgAUC 0.862 | AvgGMean 0.692 | LR 0.001891 
+  [Fold 3] Epoch  28 | Loss 0.172 | AvgMCC 0.557 | AvgAUC 0.862 | AvgGMean 0.732 | LR 0.001853 
+  [Fold 3] Epoch  29 | Loss 0.175 | AvgMCC 0.571 | AvgAUC 0.868 | AvgGMean 0.701 | LR 0.001809 
+  [Fold 3] Epoch  30 | Loss 0.175 | AvgMCC 0.588 | AvgAUC 0.878 | AvgGMean 0.771 | LR 0.001760 
+  [Fold 3] Epoch  31 | Loss 0.157 | AvgMCC 0.597 | AvgAUC 0.877 | AvgGMean 0.742 | LR 0.001707 | α=['0.268', '0.393', '0.623', '0.266', '0.267', '0.267', '0.622', '0.623', '0.395', '0.396']
+  [Fold 3] Epoch  32 | Loss 0.156 | AvgMCC 0.597 | AvgAUC 0.879 | AvgGMean 0.756 | LR 0.001649 
+  [Fold 3] Epoch  33 | Loss 0.145 | AvgMCC 0.616 | AvgAUC 0.883 | AvgGMean 0.776 | LR 0.001588 
+  [Fold 3] Epoch  34 | Loss 0.150 | AvgMCC 0.610 | AvgAUC 0.881 | AvgGMean 0.762 | LR 0.001522 
+  [Fold 3] Epoch  35 | Loss 0.132 | AvgMCC 0.616 | AvgAUC 0.882 | AvgGMean 0.763 | LR 0.001454 
+  [Fold 3] Epoch  36 | Loss 0.142 | AvgMCC 0.624 | AvgAUC 0.883 | AvgGMean 0.768 | LR 0.001383 
+  [Fold 3] Epoch  37 | Loss 0.132 | AvgMCC 0.628 | AvgAUC 0.882 | AvgGMean 0.754 | LR 0.001309 
+  [Fold 3] Epoch  38 | Loss 0.129 | AvgMCC 0.639 | AvgAUC 0.888 | AvgGMean 0.757 | LR 0.001233 
+  [Fold 3] Epoch  39 | Loss 0.125 | AvgMCC 0.637 | AvgAUC 0.886 | AvgGMean 0.767 | LR 0.001156 
+  [Fold 3] Epoch  40 | Loss 0.121 | AvgMCC 0.642 | AvgAUC 0.885 | AvgGMean 0.782 | LR 0.001078 
+  [Fold 3] Epoch  41 | Loss 0.122 | AvgMCC 0.647 | AvgAUC 0.887 | AvgGMean 0.774 | LR 0.001000 | α=['0.268', '0.397', '0.624', '0.268', '0.268', '0.268', '0.623', '0.624', '0.398', '0.399']
+  [Fold 3] Epoch  42 | Loss 0.118 | AvgMCC 0.645 | AvgAUC 0.889 | AvgGMean 0.764 | LR 0.000922 
+  [Fold 3] Epoch  43 | Loss 0.115 | AvgMCC 0.652 | AvgAUC 0.888 | AvgGMean 0.783 | LR 0.000844 
+  [Fold 3] Epoch  44 | Loss 0.109 | AvgMCC 0.657 | AvgAUC 0.889 | AvgGMean 0.784 | LR 0.000767 
+  [Fold 3] Epoch  45 | Loss 0.114 | AvgMCC 0.649 | AvgAUC 0.887 | AvgGMean 0.786 | LR 0.000691 
+  [Fold 3] Epoch  46 | Loss 0.109 | AvgMCC 0.649 | AvgAUC 0.890 | AvgGMean 0.790 | LR 0.000617 
+  [Fold 3] Epoch  47 | Loss 0.108 | AvgMCC 0.652 | AvgAUC 0.888 | AvgGMean 0.775 | LR 0.000546 
+  [Fold 3] Epoch  48 | Loss 0.107 | AvgMCC 0.657 | AvgAUC 0.892 | AvgGMean 0.794 | LR 0.000478 
+  [Fold 3] Epoch  49 | Loss 0.107 | AvgMCC 0.657 | AvgAUC 0.892 | AvgGMean 0.782 | LR 0.000412 
+  [Fold 3] Epoch  50 | Loss 0.107 | AvgMCC 0.662 | AvgAUC 0.893 | AvgGMean 0.788 | LR 0.000351 
+  [Fold 3] Epoch  51 | Loss 0.104 | AvgMCC 0.669 | AvgAUC 0.893 | AvgGMean 0.796 | LR 0.000293 | α=['0.269', '0.399', '0.625', '0.268', '0.269', '0.269', '0.625', '0.625', '0.399', '0.400']
+  [Fold 3] Epoch  52 | Loss 0.099 | AvgMCC 0.667 | AvgAUC 0.892 | AvgGMean 0.790 | LR 0.000240 
+  [Fold 3] Epoch  53 | Loss 0.103 | AvgMCC 0.663 | AvgAUC 0.891 | AvgGMean 0.791 | LR 0.000191 
+  [Fold 3] Epoch  54 | Loss 0.101 | AvgMCC 0.667 | AvgAUC 0.892 | AvgGMean 0.794 | LR 0.000147 
+  [Fold 3] Epoch  55 | Loss 0.101 | AvgMCC 0.665 | AvgAUC 0.892 | AvgGMean 0.790 | LR 0.000109 
+  [Fold 3] Epoch  56 | Loss 0.101 | AvgMCC 0.665 | AvgAUC 0.892 | AvgGMean 0.791 | LR 0.000076 
+  [Fold 3] Epoch  57 | Loss 0.097 | AvgMCC 0.665 | AvgAUC 0.892 | AvgGMean 0.792 | LR 0.000049 
+  [Fold 3] Epoch  58 | Loss 0.099 | AvgMCC 0.666 | AvgAUC 0.892 | AvgGMean 0.791 | LR 0.000028 
+  [Fold 3] Epoch  59 | Loss 0.098 | AvgMCC 0.667 | AvgAUC 0.893 | AvgGMean 0.792 | LR 0.000012 
+  [Fold 3] Epoch  60 | Loss 0.099 | AvgMCC 0.667 | AvgAUC 0.893 | AvgGMean 0.792 | LR 0.000003 
+  [Fold 3] Epoch  61 | Loss 0.115 | AvgMCC 0.604 | AvgAUC 0.872 | AvgGMean 0.739 | LR 0.002000 | α=['0.269', '0.399', '0.625', '0.268', '0.268', '0.268', '0.625', '0.625', '0.399', '0.399']
+  [Fold 3] Epoch  62 | Loss 0.153 | AvgMCC 0.557 | AvgAUC 0.856 | AvgGMean 0.764 | LR 0.001999 
+  [Fold 3] Epoch  63 | Loss 0.157 | AvgMCC 0.575 | AvgAUC 0.859 | AvgGMean 0.743 | LR 0.001997 
+  [Fold 3] Epoch  64 | Loss 0.153 | AvgMCC 0.604 | AvgAUC 0.872 | AvgGMean 0.749 | LR 0.001993 
+  [Fold 3] Epoch  65 | Loss 0.148 | AvgMCC 0.607 | AvgAUC 0.881 | AvgGMean 0.751 | LR 0.001988 
+  [Fold 3] Epoch  66 | Loss 0.147 | AvgMCC 0.606 | AvgAUC 0.881 | AvgGMean 0.752 | LR 0.001981 
+  [Fold 3] Epoch  67 | Loss 0.138 | AvgMCC 0.616 | AvgAUC 0.878 | AvgGMean 0.760 | LR 0.001972 
+  [Fold 3] Epoch  68 | Loss 0.140 | AvgMCC 0.629 | AvgAUC 0.884 | AvgGMean 0.788 | LR 0.001962 
+  [Fold 3] Epoch  69 | Loss 0.127 | AvgMCC 0.624 | AvgAUC 0.876 | AvgGMean 0.772 | LR 0.001951 
+  [Fold 3] Epoch  70 | Loss 0.131 | AvgMCC 0.631 | AvgAUC 0.887 | AvgGMean 0.778 | LR 0.001938 
+  [Fold 3] Epoch  71 | Loss 0.127 | AvgMCC 0.639 | AvgAUC 0.886 | AvgGMean 0.781 | LR 0.001924 | α=['0.268', '0.397', '0.625', '0.268', '0.267', '0.268', '0.623', '0.624', '0.398', '0.399']
+  [Fold 3] Epoch  72 | Loss 0.125 | AvgMCC 0.633 | AvgAUC 0.889 | AvgGMean 0.777 | LR 0.001908 
+  [Fold 3] Epoch  73 | Loss 0.120 | AvgMCC 0.638 | AvgAUC 0.888 | AvgGMean 0.762 | LR 0.001891 
+  [Fold 3] Epoch  74 | Loss 0.117 | AvgMCC 0.641 | AvgAUC 0.885 | AvgGMean 0.798 | LR 0.001872 
+  [Fold 3] Epoch  75 | Loss 0.113 | AvgMCC 0.646 | AvgAUC 0.890 | AvgGMean 0.799 | LR 0.001853 
+  [Fold 3] Epoch  76 | Loss 0.114 | AvgMCC 0.651 | AvgAUC 0.888 | AvgGMean 0.789 | LR 0.001831 
+  [Fold 3] Epoch  77 | Loss 0.113 | AvgMCC 0.655 | AvgAUC 0.890 | AvgGMean 0.785 | LR 0.001809 
+  [Fold 3] Epoch  78 | Loss 0.109 | AvgMCC 0.649 | AvgAUC 0.888 | AvgGMean 0.794 | LR 0.001785 
+  [Fold 3] Epoch  79 | Loss 0.109 | AvgMCC 0.659 | AvgAUC 0.893 | AvgGMean 0.812 | LR 0.001760 
+  [Fold 3] Epoch  80 | Loss 0.108 | AvgMCC 0.656 | AvgAUC 0.887 | AvgGMean 0.796 | LR 0.001734 
+  [Fold 3] Epoch  81 | Loss 0.109 | AvgMCC 0.656 | AvgAUC 0.883 | AvgGMean 0.780 | LR 0.001707 | α=['0.269', '0.399', '0.625', '0.268', '0.268', '0.269', '0.624', '0.625', '0.399', '0.399']
+
+  🛑 Early stop at Epoch 81, best was Epoch 51
+
+  ✅ Fold 3 BEST AvgValMCC=0.6691 at Epoch 51
+     Ab: ValMCC=0.592 TestMCC=0.561 α=0.269 target=0.25
+     Bs: ValMCC=0.651 TestMCC=0.660 α=0.399 target=0.40
+     Ec: ValMCC=0.619 TestMCC=0.681 α=0.625 target=0.65
+     Ef: ValMCC=0.625 TestMCC=0.540 α=0.268 target=0.25
+     Kp: ValMCC=0.636 TestMCC=0.651 α=0.268 target=0.25
+     Ml: ValMCC=0.657 TestMCC=0.649 α=0.269 target=0.25
+     Pa: ValMCC=0.678 TestMCC=0.691 α=0.624 target=0.65
+     Sa: ValMCC=0.606 TestMCC=0.655 α=0.625 target=0.65
+     Se: ValMCC=0.754 TestMCC=0.744 α=0.399 target=0.40
+     St: ValMCC=0.740 TestMCC=0.786 α=0.399 target=0.40
+
+######################################################################
+# FOLD 4/5 | Prior-Anchored Learnable α (V6-v6)
+######################################################################
+  [Fold 4] Epoch   1 | Loss 0.384 | AvgMCC 0.152 | AvgAUC 0.602 | AvgGMean 0.528 | LR 0.002000 | α=['0.260', '0.457', '0.702', '0.227', '0.213', '0.220', '0.713', '0.666', '0.386', '0.490']
+  [Fold 4] Epoch   2 | Loss 0.349 | AvgMCC 0.157 | AvgAUC 0.592 | AvgGMean 0.503 | LR 0.001988 
+  [Fold 4] Epoch   3 | Loss 0.337 | AvgMCC 0.189 | AvgAUC 0.634 | AvgGMean 0.536 | LR 0.001951 
+  [Fold 4] Epoch   4 | Loss 0.308 | AvgMCC 0.246 | AvgAUC 0.671 | AvgGMean 0.554 | LR 0.001891 
+  [Fold 4] Epoch   5 | Loss 0.314 | AvgMCC 0.251 | AvgAUC 0.692 | AvgGMean 0.591 | LR 0.001809 
+  [Fold 4] Epoch   6 | Loss 0.305 | AvgMCC 0.276 | AvgAUC 0.715 | AvgGMean 0.657 | LR 0.001707 
+  [Fold 4] Epoch   7 | Loss 0.282 | AvgMCC 0.299 | AvgAUC 0.725 | AvgGMean 0.587 | LR 0.001588 
+  [Fold 4] Epoch   8 | Loss 0.275 | AvgMCC 0.340 | AvgAUC 0.748 | AvgGMean 0.613 | LR 0.001454 
+  [Fold 4] Epoch   9 | Loss 0.272 | AvgMCC 0.384 | AvgAUC 0.783 | AvgGMean 0.676 | LR 0.001309 
+  [Fold 4] Epoch  10 | Loss 0.253 | AvgMCC 0.417 | AvgAUC 0.799 | AvgGMean 0.610 | LR 0.001156 
+  [Fold 4] Epoch  11 | Loss 0.244 | AvgMCC 0.423 | AvgAUC 0.812 | AvgGMean 0.664 | LR 0.001000 | α=['0.264', '0.396', '0.639', '0.260', '0.257', '0.260', '0.652', '0.621', '0.391', '0.419']
+  [Fold 4] Epoch  12 | Loss 0.229 | AvgMCC 0.461 | AvgAUC 0.819 | AvgGMean 0.671 | LR 0.000844 
+  [Fold 4] Epoch  13 | Loss 0.226 | AvgMCC 0.490 | AvgAUC 0.842 | AvgGMean 0.656 | LR 0.000691 
+  [Fold 4] Epoch  14 | Loss 0.220 | AvgMCC 0.502 | AvgAUC 0.851 | AvgGMean 0.685 | LR 0.000546 
+  [Fold 4] Epoch  15 | Loss 0.195 | AvgMCC 0.525 | AvgAUC 0.854 | AvgGMean 0.710 | LR 0.000412 
+  [Fold 4] Epoch  16 | Loss 0.191 | AvgMCC 0.528 | AvgAUC 0.864 | AvgGMean 0.675 | LR 0.000293 
+  [Fold 4] Epoch  17 | Loss 0.188 | AvgMCC 0.537 | AvgAUC 0.868 | AvgGMean 0.709 | LR 0.000191 
+  [Fold 4] Epoch  18 | Loss 0.177 | AvgMCC 0.545 | AvgAUC 0.870 | AvgGMean 0.700 | LR 0.000109 
+  [Fold 4] Epoch  19 | Loss 0.173 | AvgMCC 0.547 | AvgAUC 0.871 | AvgGMean 0.730 | LR 0.000049 
+  [Fold 4] Epoch  20 | Loss 0.175 | AvgMCC 0.545 | AvgAUC 0.871 | AvgGMean 0.734 | LR 0.000012 
+  [Fold 4] Epoch  21 | Loss 0.214 | AvgMCC 0.481 | AvgAUC 0.829 | AvgGMean 0.671 | LR 0.002000 | α=['0.265', '0.392', '0.624', '0.264', '0.265', '0.266', '0.626', '0.621', '0.392', '0.399']
+  [Fold 4] Epoch  22 | Loss 0.222 | AvgMCC 0.496 | AvgAUC 0.837 | AvgGMean 0.689 | LR 0.001997 
+  [Fold 4] Epoch  23 | Loss 0.220 | AvgMCC 0.518 | AvgAUC 0.852 | AvgGMean 0.702 | LR 0.001988 
+  [Fold 4] Epoch  24 | Loss 0.213 | AvgMCC 0.510 | AvgAUC 0.853 | AvgGMean 0.691 | LR 0.001972 
+  [Fold 4] Epoch  25 | Loss 0.205 | AvgMCC 0.530 | AvgAUC 0.854 | AvgGMean 0.692 | LR 0.001951 
+  [Fold 4] Epoch  26 | Loss 0.201 | AvgMCC 0.537 | AvgAUC 0.861 | AvgGMean 0.722 | LR 0.001924 
+  [Fold 4] Epoch  27 | Loss 0.197 | AvgMCC 0.560 | AvgAUC 0.863 | AvgGMean 0.697 | LR 0.001891 
+  [Fold 4] Epoch  28 | Loss 0.183 | AvgMCC 0.576 | AvgAUC 0.875 | AvgGMean 0.713 | LR 0.001853 
+  [Fold 4] Epoch  29 | Loss 0.179 | AvgMCC 0.576 | AvgAUC 0.874 | AvgGMean 0.749 | LR 0.001809 
+  [Fold 4] Epoch  30 | Loss 0.173 | AvgMCC 0.582 | AvgAUC 0.877 | AvgGMean 0.743 | LR 0.001760 
+  [Fold 4] Epoch  31 | Loss 0.175 | AvgMCC 0.609 | AvgAUC 0.880 | AvgGMean 0.743 | LR 0.001707 | α=['0.267', '0.392', '0.623', '0.266', '0.265', '0.267', '0.619', '0.622', '0.396', '0.396']
+  [Fold 4] Epoch  32 | Loss 0.162 | AvgMCC 0.590 | AvgAUC 0.878 | AvgGMean 0.732 | LR 0.001649 
+  [Fold 4] Epoch  33 | Loss 0.161 | AvgMCC 0.618 | AvgAUC 0.886 | AvgGMean 0.764 | LR 0.001588 
+  [Fold 4] Epoch  34 | Loss 0.147 | AvgMCC 0.615 | AvgAUC 0.885 | AvgGMean 0.746 | LR 0.001522 
+  [Fold 4] Epoch  35 | Loss 0.149 | AvgMCC 0.610 | AvgAUC 0.888 | AvgGMean 0.730 | LR 0.001454 
+  [Fold 4] Epoch  36 | Loss 0.141 | AvgMCC 0.627 | AvgAUC 0.892 | AvgGMean 0.757 | LR 0.001383 
+  [Fold 4] Epoch  37 | Loss 0.136 | AvgMCC 0.623 | AvgAUC 0.893 | AvgGMean 0.781 | LR 0.001309 
+  [Fold 4] Epoch  38 | Loss 0.138 | AvgMCC 0.628 | AvgAUC 0.898 | AvgGMean 0.756 | LR 0.001233 
+  [Fold 4] Epoch  39 | Loss 0.124 | AvgMCC 0.646 | AvgAUC 0.899 | AvgGMean 0.762 | LR 0.001156 
+  [Fold 4] Epoch  40 | Loss 0.124 | AvgMCC 0.639 | AvgAUC 0.897 | AvgGMean 0.756 | LR 0.001078 
+  [Fold 4] Epoch  41 | Loss 0.126 | AvgMCC 0.640 | AvgAUC 0.894 | AvgGMean 0.768 | LR 0.001000 | α=['0.268', '0.397', '0.625', '0.267', '0.267', '0.268', '0.622', '0.624', '0.398', '0.398']
+  [Fold 4] Epoch  42 | Loss 0.119 | AvgMCC 0.655 | AvgAUC 0.896 | AvgGMean 0.784 | LR 0.000922 
+  [Fold 4] Epoch  43 | Loss 0.115 | AvgMCC 0.660 | AvgAUC 0.893 | AvgGMean 0.781 | LR 0.000844 
+  [Fold 4] Epoch  44 | Loss 0.115 | AvgMCC 0.661 | AvgAUC 0.897 | AvgGMean 0.770 | LR 0.000767 
+  [Fold 4] Epoch  45 | Loss 0.114 | AvgMCC 0.658 | AvgAUC 0.894 | AvgGMean 0.776 | LR 0.000691 
+  [Fold 4] Epoch  46 | Loss 0.112 | AvgMCC 0.663 | AvgAUC 0.895 | AvgGMean 0.775 | LR 0.000617 
+  [Fold 4] Epoch  47 | Loss 0.108 | AvgMCC 0.664 | AvgAUC 0.896 | AvgGMean 0.779 | LR 0.000546 
+  [Fold 4] Epoch  48 | Loss 0.111 | AvgMCC 0.668 | AvgAUC 0.897 | AvgGMean 0.785 | LR 0.000478 
+  [Fold 4] Epoch  49 | Loss 0.104 | AvgMCC 0.668 | AvgAUC 0.898 | AvgGMean 0.785 | LR 0.000412 
+  [Fold 4] Epoch  50 | Loss 0.100 | AvgMCC 0.666 | AvgAUC 0.898 | AvgGMean 0.781 | LR 0.000351 
+  [Fold 4] Epoch  51 | Loss 0.106 | AvgMCC 0.669 | AvgAUC 0.899 | AvgGMean 0.781 | LR 0.000293 | α=['0.269', '0.399', '0.625', '0.268', '0.268', '0.269', '0.624', '0.625', '0.399', '0.399']
+  [Fold 4] Epoch  52 | Loss 0.102 | AvgMCC 0.668 | AvgAUC 0.897 | AvgGMean 0.778 | LR 0.000240 
+  [Fold 4] Epoch  53 | Loss 0.105 | AvgMCC 0.664 | AvgAUC 0.899 | AvgGMean 0.770 | LR 0.000191 
+  [Fold 4] Epoch  54 | Loss 0.102 | AvgMCC 0.665 | AvgAUC 0.898 | AvgGMean 0.769 | LR 0.000147 
+  [Fold 4] Epoch  55 | Loss 0.105 | AvgMCC 0.667 | AvgAUC 0.898 | AvgGMean 0.772 | LR 0.000109 
+  [Fold 4] Epoch  56 | Loss 0.101 | AvgMCC 0.668 | AvgAUC 0.899 | AvgGMean 0.768 | LR 0.000076 
+  [Fold 4] Epoch  57 | Loss 0.101 | AvgMCC 0.669 | AvgAUC 0.899 | AvgGMean 0.778 | LR 0.000049 
+  [Fold 4] Epoch  58 | Loss 0.099 | AvgMCC 0.670 | AvgAUC 0.899 | AvgGMean 0.779 | LR 0.000028 
+  [Fold 4] Epoch  59 | Loss 0.102 | AvgMCC 0.670 | AvgAUC 0.899 | AvgGMean 0.778 | LR 0.000012 
+  [Fold 4] Epoch  60 | Loss 0.103 | AvgMCC 0.670 | AvgAUC 0.899 | AvgGMean 0.778 | LR 0.000003 
+  [Fold 4] Epoch  61 | Loss 0.121 | AvgMCC 0.618 | AvgAUC 0.885 | AvgGMean 0.757 | LR 0.002000 | α=['0.268', '0.398', '0.625', '0.268', '0.268', '0.268', '0.625', '0.625', '0.397', '0.399']
+  [Fold 4] Epoch  62 | Loss 0.148 | AvgMCC 0.618 | AvgAUC 0.879 | AvgGMean 0.754 | LR 0.001999 
+  [Fold 4] Epoch  63 | Loss 0.161 | AvgMCC 0.573 | AvgAUC 0.877 | AvgGMean 0.729 | LR 0.001997 
+  [Fold 4] Epoch  64 | Loss 0.160 | AvgMCC 0.608 | AvgAUC 0.877 | AvgGMean 0.752 | LR 0.001993 
+  [Fold 4] Epoch  65 | Loss 0.151 | AvgMCC 0.619 | AvgAUC 0.885 | AvgGMean 0.764 | LR 0.001988 
+  [Fold 4] Epoch  66 | Loss 0.136 | AvgMCC 0.603 | AvgAUC 0.877 | AvgGMean 0.742 | LR 0.001981 
+  [Fold 4] Epoch  67 | Loss 0.141 | AvgMCC 0.631 | AvgAUC 0.884 | AvgGMean 0.774 | LR 0.001972 
+  [Fold 4] Epoch  68 | Loss 0.136 | AvgMCC 0.632 | AvgAUC 0.891 | AvgGMean 0.768 | LR 0.001962 
+  [Fold 4] Epoch  69 | Loss 0.133 | AvgMCC 0.648 | AvgAUC 0.891 | AvgGMean 0.786 | LR 0.001951 
+  [Fold 4] Epoch  70 | Loss 0.132 | AvgMCC 0.651 | AvgAUC 0.903 | AvgGMean 0.786 | LR 0.001938 
+  [Fold 4] Epoch  71 | Loss 0.122 | AvgMCC 0.644 | AvgAUC 0.897 | AvgGMean 0.777 | LR 0.001924 | α=['0.268', '0.397', '0.625', '0.268', '0.268', '0.268', '0.623', '0.624', '0.399', '0.398']
+  [Fold 4] Epoch  72 | Loss 0.127 | AvgMCC 0.652 | AvgAUC 0.898 | AvgGMean 0.769 | LR 0.001908 
+  [Fold 4] Epoch  73 | Loss 0.120 | AvgMCC 0.656 | AvgAUC 0.892 | AvgGMean 0.784 | LR 0.001891 
+  [Fold 4] Epoch  74 | Loss 0.120 | AvgMCC 0.655 | AvgAUC 0.895 | AvgGMean 0.774 | LR 0.001872 
+  [Fold 4] Epoch  75 | Loss 0.116 | AvgMCC 0.656 | AvgAUC 0.894 | AvgGMean 0.791 | LR 0.001853 
+  [Fold 4] Epoch  76 | Loss 0.111 | AvgMCC 0.657 | AvgAUC 0.893 | AvgGMean 0.777 | LR 0.001831 
+  [Fold 4] Epoch  77 | Loss 0.115 | AvgMCC 0.656 | AvgAUC 0.899 | AvgGMean 0.781 | LR 0.001809 
+  [Fold 4] Epoch  78 | Loss 0.114 | AvgMCC 0.660 | AvgAUC 0.898 | AvgGMean 0.785 | LR 0.001785 
+  [Fold 4] Epoch  79 | Loss 0.109 | AvgMCC 0.661 | AvgAUC 0.897 | AvgGMean 0.774 | LR 0.001760 
+  [Fold 4] Epoch  80 | Loss 0.107 | AvgMCC 0.670 | AvgAUC 0.897 | AvgGMean 0.783 | LR 0.001734 
+  [Fold 4] Epoch  81 | Loss 0.107 | AvgMCC 0.660 | AvgAUC 0.900 | AvgGMean 0.770 | LR 0.001707 | α=['0.268', '0.399', '0.625', '0.268', '0.268', '0.269', '0.624', '0.625', '0.399', '0.399']
+  [Fold 4] Epoch  82 | Loss 0.109 | AvgMCC 0.662 | AvgAUC 0.905 | AvgGMean 0.783 | LR 0.001679 
+  [Fold 4] Epoch  83 | Loss 0.101 | AvgMCC 0.665 | AvgAUC 0.902 | AvgGMean 0.791 | LR 0.001649 
+  [Fold 4] Epoch  84 | Loss 0.105 | AvgMCC 0.677 | AvgAUC 0.907 | AvgGMean 0.793 | LR 0.001619 
+  [Fold 4] Epoch  85 | Loss 0.108 | AvgMCC 0.665 | AvgAUC 0.901 | AvgGMean 0.789 | LR 0.001588 
+  [Fold 4] Epoch  86 | Loss 0.102 | AvgMCC 0.667 | AvgAUC 0.903 | AvgGMean 0.791 | LR 0.001556 
+  [Fold 4] Epoch  87 | Loss 0.102 | AvgMCC 0.672 | AvgAUC 0.905 | AvgGMean 0.785 | LR 0.001522 
+  [Fold 4] Epoch  88 | Loss 0.097 | AvgMCC 0.669 | AvgAUC 0.899 | AvgGMean 0.792 | LR 0.001489 
+  [Fold 4] Epoch  89 | Loss 0.097 | AvgMCC 0.676 | AvgAUC 0.901 | AvgGMean 0.790 | LR 0.001454 
+  [Fold 4] Epoch  90 | Loss 0.098 | AvgMCC 0.670 | AvgAUC 0.901 | AvgGMean 0.797 | LR 0.001419 
+  [Fold 4] Epoch  91 | Loss 0.097 | AvgMCC 0.670 | AvgAUC 0.905 | AvgGMean 0.801 | LR 0.001383 | α=['0.269', '0.399', '0.626', '0.269', '0.269', '0.269', '0.625', '0.625', '0.399', '0.400']
+  [Fold 4] Epoch  92 | Loss 0.102 | AvgMCC 0.678 | AvgAUC 0.907 | AvgGMean 0.796 | LR 0.001346 
+  [Fold 4] Epoch  93 | Loss 0.099 | AvgMCC 0.674 | AvgAUC 0.910 | AvgGMean 0.794 | LR 0.001309 
+  [Fold 4] Epoch  94 | Loss 0.100 | AvgMCC 0.670 | AvgAUC 0.908 | AvgGMean 0.789 | LR 0.001271 
+  [Fold 4] Epoch  95 | Loss 0.098 | AvgMCC 0.676 | AvgAUC 0.906 | AvgGMean 0.785 | LR 0.001233 
+  [Fold 4] Epoch  96 | Loss 0.097 | AvgMCC 0.673 | AvgAUC 0.907 | AvgGMean 0.784 | LR 0.001195 
+  [Fold 4] Epoch  97 | Loss 0.096 | AvgMCC 0.674 | AvgAUC 0.906 | AvgGMean 0.783 | LR 0.001156 
+  [Fold 4] Epoch  98 | Loss 0.098 | AvgMCC 0.674 | AvgAUC 0.908 | AvgGMean 0.787 | LR 0.001118 
+  [Fold 4] Epoch  99 | Loss 0.097 | AvgMCC 0.681 | AvgAUC 0.909 | AvgGMean 0.792 | LR 0.001078 
+  [Fold 4] Epoch 100 | Loss 0.095 | AvgMCC 0.674 | AvgAUC 0.907 | AvgGMean 0.784 | LR 0.001039 
+  [Fold 4] Epoch 101 | Loss 0.096 | AvgMCC 0.679 | AvgAUC 0.905 | AvgGMean 0.797 | LR 0.001000 | α=['0.269', '0.400', '0.626', '0.269', '0.269', '0.269', '0.625', '0.626', '0.400', '0.400']
+  [Fold 4] Epoch 102 | Loss 0.096 | AvgMCC 0.681 | AvgAUC 0.906 | AvgGMean 0.792 | LR 0.000961 
+  [Fold 4] Epoch 103 | Loss 0.091 | AvgMCC 0.679 | AvgAUC 0.908 | AvgGMean 0.797 | LR 0.000922 
+  [Fold 4] Epoch 104 | Loss 0.093 | AvgMCC 0.682 | AvgAUC 0.909 | AvgGMean 0.790 | LR 0.000882 
+  [Fold 4] Epoch 105 | Loss 0.097 | AvgMCC 0.683 | AvgAUC 0.910 | AvgGMean 0.795 | LR 0.000844 
+  [Fold 4] Epoch 106 | Loss 0.092 | AvgMCC 0.682 | AvgAUC 0.908 | AvgGMean 0.797 | LR 0.000805 
+  [Fold 4] Epoch 107 | Loss 0.095 | AvgMCC 0.681 | AvgAUC 0.909 | AvgGMean 0.799 | LR 0.000767 
+  [Fold 4] Epoch 108 | Loss 0.093 | AvgMCC 0.681 | AvgAUC 0.907 | AvgGMean 0.795 | LR 0.000729 
+  [Fold 4] Epoch 109 | Loss 0.093 | AvgMCC 0.678 | AvgAUC 0.909 | AvgGMean 0.786 | LR 0.000691 
+  [Fold 4] Epoch 110 | Loss 0.096 | AvgMCC 0.685 | AvgAUC 0.908 | AvgGMean 0.792 | LR 0.000654 
+  [Fold 4] Epoch 111 | Loss 0.094 | AvgMCC 0.682 | AvgAUC 0.911 | AvgGMean 0.805 | LR 0.000617 | α=['0.269', '0.400', '0.626', '0.269', '0.269', '0.269', '0.626', '0.626', '0.400', '0.400']
+  [Fold 4] Epoch 112 | Loss 0.092 | AvgMCC 0.680 | AvgAUC 0.912 | AvgGMean 0.805 | LR 0.000581 
+  [Fold 4] Epoch 113 | Loss 0.093 | AvgMCC 0.680 | AvgAUC 0.910 | AvgGMean 0.791 | LR 0.000546 
+  [Fold 4] Epoch 114 | Loss 0.091 | AvgMCC 0.683 | AvgAUC 0.911 | AvgGMean 0.796 | LR 0.000511 
+  [Fold 4] Epoch 115 | Loss 0.090 | AvgMCC 0.680 | AvgAUC 0.911 | AvgGMean 0.793 | LR 0.000478 
+  [Fold 4] Epoch 116 | Loss 0.092 | AvgMCC 0.685 | AvgAUC 0.912 | AvgGMean 0.800 | LR 0.000444 
+  [Fold 4] Epoch 117 | Loss 0.096 | AvgMCC 0.686 | AvgAUC 0.912 | AvgGMean 0.796 | LR 0.000412 
+  [Fold 4] Epoch 118 | Loss 0.092 | AvgMCC 0.687 | AvgAUC 0.912 | AvgGMean 0.805 | LR 0.000381 
+  [Fold 4] Epoch 119 | Loss 0.093 | AvgMCC 0.686 | AvgAUC 0.912 | AvgGMean 0.799 | LR 0.000351 
+  [Fold 4] Epoch 120 | Loss 0.092 | AvgMCC 0.686 | AvgAUC 0.912 | AvgGMean 0.804 | LR 0.000321 
+  [Fold 4] Epoch 121 | Loss 0.093 | AvgMCC 0.684 | AvgAUC 0.913 | AvgGMean 0.792 | LR 0.000293 | α=['0.269', '0.400', '0.626', '0.269', '0.269', '0.269', '0.626', '0.626', '0.400', '0.400']
+  [Fold 4] Epoch 122 | Loss 0.092 | AvgMCC 0.685 | AvgAUC 0.912 | AvgGMean 0.801 | LR 0.000266 
+  [Fold 4] Epoch 123 | Loss 0.091 | AvgMCC 0.687 | AvgAUC 0.912 | AvgGMean 0.801 | LR 0.000240 
+  [Fold 4] Epoch 124 | Loss 0.094 | AvgMCC 0.689 | AvgAUC 0.913 | AvgGMean 0.801 | LR 0.000215 
+  [Fold 4] Epoch 125 | Loss 0.091 | AvgMCC 0.690 | AvgAUC 0.913 | AvgGMean 0.800 | LR 0.000191 
+  [Fold 4] Epoch 126 | Loss 0.092 | AvgMCC 0.688 | AvgAUC 0.913 | AvgGMean 0.793 | LR 0.000169 
+  [Fold 4] Epoch 127 | Loss 0.090 | AvgMCC 0.688 | AvgAUC 0.913 | AvgGMean 0.805 | LR 0.000147 
+  [Fold 4] Epoch 128 | Loss 0.088 | AvgMCC 0.689 | AvgAUC 0.913 | AvgGMean 0.800 | LR 0.000128 
+  [Fold 4] Epoch 129 | Loss 0.091 | AvgMCC 0.687 | AvgAUC 0.913 | AvgGMean 0.796 | LR 0.000109 
+  [Fold 4] Epoch 130 | Loss 0.092 | AvgMCC 0.688 | AvgAUC 0.913 | AvgGMean 0.794 | LR 0.000092 
+  [Fold 4] Epoch 131 | Loss 0.094 | AvgMCC 0.688 | AvgAUC 0.913 | AvgGMean 0.800 | LR 0.000076 | α=['0.269', '0.400', '0.626', '0.269', '0.269', '0.269', '0.626', '0.626', '0.400', '0.400']
+  [Fold 4] Epoch 132 | Loss 0.093 | AvgMCC 0.689 | AvgAUC 0.913 | AvgGMean 0.800 | LR 0.000062 
+  [Fold 4] Epoch 133 | Loss 0.091 | AvgMCC 0.689 | AvgAUC 0.913 | AvgGMean 0.794 | LR 0.000049 
+  [Fold 4] Epoch 134 | Loss 0.094 | AvgMCC 0.689 | AvgAUC 0.913 | AvgGMean 0.796 | LR 0.000038 
+  [Fold 4] Epoch 135 | Loss 0.093 | AvgMCC 0.689 | AvgAUC 0.913 | AvgGMean 0.799 | LR 0.000028 
+  [Fold 4] Epoch 136 | Loss 0.091 | AvgMCC 0.689 | AvgAUC 0.913 | AvgGMean 0.797 | LR 0.000019 
+  [Fold 4] Epoch 137 | Loss 0.092 | AvgMCC 0.689 | AvgAUC 0.913 | AvgGMean 0.794 | LR 0.000012 
+  [Fold 4] Epoch 138 | Loss 0.091 | AvgMCC 0.689 | AvgAUC 0.913 | AvgGMean 0.795 | LR 0.000007 
+  [Fold 4] Epoch 139 | Loss 0.090 | AvgMCC 0.689 | AvgAUC 0.913 | AvgGMean 0.798 | LR 0.000003 
+  [Fold 4] Epoch 140 | Loss 0.090 | AvgMCC 0.689 | AvgAUC 0.913 | AvgGMean 0.798 | LR 0.000001 
+  [Fold 4] Epoch 141 | Loss 0.104 | AvgMCC 0.608 | AvgAUC 0.876 | AvgGMean 0.755 | LR 0.002000 | α=['0.268', '0.399', '0.626', '0.269', '0.269', '0.269', '0.625', '0.626', '0.399', '0.400']
+  [Fold 4] Epoch 142 | Loss 0.167 | AvgMCC 0.580 | AvgAUC 0.858 | AvgGMean 0.725 | LR 0.002000 
+  [Fold 4] Epoch 143 | Loss 0.162 | AvgMCC 0.589 | AvgAUC 0.876 | AvgGMean 0.744 | LR 0.001999 
+  [Fold 4] Epoch 144 | Loss 0.161 | AvgMCC 0.606 | AvgAUC 0.873 | AvgGMean 0.761 | LR 0.001998 
+  [Fold 4] Epoch 145 | Loss 0.148 | AvgMCC 0.621 | AvgAUC 0.884 | AvgGMean 0.749 | LR 0.001997 
+  [Fold 4] Epoch 146 | Loss 0.147 | AvgMCC 0.623 | AvgAUC 0.888 | AvgGMean 0.778 | LR 0.001995 
+  [Fold 4] Epoch 147 | Loss 0.130 | AvgMCC 0.657 | AvgAUC 0.887 | AvgGMean 0.779 | LR 0.001993 
+  [Fold 4] Epoch 148 | Loss 0.122 | AvgMCC 0.664 | AvgAUC 0.896 | AvgGMean 0.775 | LR 0.001991 
+  [Fold 4] Epoch 149 | Loss 0.119 | AvgMCC 0.662 | AvgAUC 0.891 | AvgGMean 0.775 | LR 0.001988 
+  [Fold 4] Epoch 150 | Loss 0.119 | AvgMCC 0.649 | AvgAUC 0.889 | AvgGMean 0.780 | LR 0.001984 | α=['0.268', '0.398', '0.625', '0.268', '0.268', '0.268', '0.624', '0.625', '0.399', '0.398']
+
+  ✅ Fold 4 BEST AvgValMCC=0.6899 at Epoch 125
+     Ab: ValMCC=0.617 TestMCC=0.514 α=0.268 target=0.25
+     Bs: ValMCC=0.624 TestMCC=0.678 α=0.398 target=0.40
+     Ec: ValMCC=0.551 TestMCC=0.545 α=0.625 target=0.65
+     Ef: ValMCC=0.610 TestMCC=0.510 α=0.268 target=0.25
+     Kp: ValMCC=0.634 TestMCC=0.664 α=0.268 target=0.25
+     Ml: ValMCC=0.682 TestMCC=0.643 α=0.268 target=0.25
+     Pa: ValMCC=0.705 TestMCC=0.696 α=0.624 target=0.65
+     Sa: ValMCC=0.605 TestMCC=0.605 α=0.625 target=0.65
+     Se: ValMCC=0.710 TestMCC=0.765 α=0.399 target=0.40
+     St: ValMCC=0.749 TestMCC=0.717 α=0.398 target=0.40
+
+######################################################################
+# FOLD 5/5 | Prior-Anchored Learnable α (V6-v6)
+######################################################################
+  [Fold 5] Epoch   1 | Loss 0.400 | AvgMCC 0.150 | AvgAUC 0.610 | AvgGMean 0.569 | LR 0.002000 | α=['0.216', '0.394', '0.718', '0.196', '0.191', '0.227', '0.678', '0.703', '0.386', '0.458']
+  [Fold 5] Epoch   2 | Loss 0.369 | AvgMCC 0.201 | AvgAUC 0.626 | AvgGMean 0.532 | LR 0.001988 
+  [Fold 5] Epoch   3 | Loss 0.341 | AvgMCC 0.185 | AvgAUC 0.633 | AvgGMean 0.540 | LR 0.001951 
+  [Fold 5] Epoch   4 | Loss 0.335 | AvgMCC 0.244 | AvgAUC 0.683 | AvgGMean 0.522 | LR 0.001891 
+  [Fold 5] Epoch   5 | Loss 0.310 | AvgMCC 0.270 | AvgAUC 0.684 | AvgGMean 0.532 | LR 0.001809 
+  [Fold 5] Epoch   6 | Loss 0.305 | AvgMCC 0.309 | AvgAUC 0.729 | AvgGMean 0.625 | LR 0.001707 
+  [Fold 5] Epoch   7 | Loss 0.290 | AvgMCC 0.346 | AvgAUC 0.758 | AvgGMean 0.632 | LR 0.001588 
+  [Fold 5] Epoch   8 | Loss 0.279 | AvgMCC 0.351 | AvgAUC 0.762 | AvgGMean 0.608 | LR 0.001454 
+  [Fold 5] Epoch   9 | Loss 0.272 | AvgMCC 0.412 | AvgAUC 0.788 | AvgGMean 0.571 | LR 0.001309 
+  [Fold 5] Epoch  10 | Loss 0.267 | AvgMCC 0.424 | AvgAUC 0.802 | AvgGMean 0.624 | LR 0.001156 
+  [Fold 5] Epoch  11 | Loss 0.249 | AvgMCC 0.422 | AvgAUC 0.807 | AvgGMean 0.635 | LR 0.001000 | α=['0.257', '0.389', '0.653', '0.242', '0.239', '0.261', '0.621', '0.641', '0.391', '0.399']
+  [Fold 5] Epoch  12 | Loss 0.234 | AvgMCC 0.479 | AvgAUC 0.819 | AvgGMean 0.643 | LR 0.000844 
+  [Fold 5] Epoch  13 | Loss 0.225 | AvgMCC 0.487 | AvgAUC 0.829 | AvgGMean 0.626 | LR 0.000691 
+  [Fold 5] Epoch  14 | Loss 0.218 | AvgMCC 0.508 | AvgAUC 0.844 | AvgGMean 0.648 | LR 0.000546 
+  [Fold 5] Epoch  15 | Loss 0.211 | AvgMCC 0.539 | AvgAUC 0.852 | AvgGMean 0.686 | LR 0.000412 
+  [Fold 5] Epoch  16 | Loss 0.209 | AvgMCC 0.535 | AvgAUC 0.858 | AvgGMean 0.720 | LR 0.000293 
+  [Fold 5] Epoch  17 | Loss 0.190 | AvgMCC 0.547 | AvgAUC 0.860 | AvgGMean 0.721 | LR 0.000191 
+  [Fold 5] Epoch  18 | Loss 0.183 | AvgMCC 0.550 | AvgAUC 0.863 | AvgGMean 0.719 | LR 0.000109 
+  [Fold 5] Epoch  19 | Loss 0.184 | AvgMCC 0.557 | AvgAUC 0.864 | AvgGMean 0.727 | LR 0.000049 
+  [Fold 5] Epoch  20 | Loss 0.186 | AvgMCC 0.556 | AvgAUC 0.865 | AvgGMean 0.718 | LR 0.000012 
+  [Fold 5] Epoch  21 | Loss 0.217 | AvgMCC 0.493 | AvgAUC 0.830 | AvgGMean 0.689 | LR 0.002000 | α=['0.266', '0.390', '0.629', '0.261', '0.260', '0.265', '0.619', '0.623', '0.391', '0.395']
+  [Fold 5] Epoch  22 | Loss 0.232 | AvgMCC 0.476 | AvgAUC 0.828 | AvgGMean 0.651 | LR 0.001997 
+  [Fold 5] Epoch  23 | Loss 0.221 | AvgMCC 0.512 | AvgAUC 0.835 | AvgGMean 0.663 | LR 0.001988 
+  [Fold 5] Epoch  24 | Loss 0.209 | AvgMCC 0.510 | AvgAUC 0.838 | AvgGMean 0.657 | LR 0.001972 
+  [Fold 5] Epoch  25 | Loss 0.210 | AvgMCC 0.536 | AvgAUC 0.849 | AvgGMean 0.688 | LR 0.001951 
+  [Fold 5] Epoch  26 | Loss 0.216 | AvgMCC 0.550 | AvgAUC 0.854 | AvgGMean 0.684 | LR 0.001924 
+  [Fold 5] Epoch  27 | Loss 0.193 | AvgMCC 0.555 | AvgAUC 0.864 | AvgGMean 0.713 | LR 0.001891 
+  [Fold 5] Epoch  28 | Loss 0.188 | AvgMCC 0.551 | AvgAUC 0.867 | AvgGMean 0.694 | LR 0.001853 
+  [Fold 5] Epoch  29 | Loss 0.194 | AvgMCC 0.562 | AvgAUC 0.860 | AvgGMean 0.715 | LR 0.001809 
+  [Fold 5] Epoch  30 | Loss 0.180 | AvgMCC 0.563 | AvgAUC 0.858 | AvgGMean 0.701 | LR 0.001760 
+  [Fold 5] Epoch  31 | Loss 0.172 | AvgMCC 0.578 | AvgAUC 0.860 | AvgGMean 0.735 | LR 0.001707 | α=['0.267', '0.394', '0.623', '0.264', '0.264', '0.267', '0.619', '0.622', '0.394', '0.396']
+  [Fold 5] Epoch  32 | Loss 0.175 | AvgMCC 0.593 | AvgAUC 0.877 | AvgGMean 0.728 | LR 0.001649 
+  [Fold 5] Epoch  33 | Loss 0.157 | AvgMCC 0.600 | AvgAUC 0.870 | AvgGMean 0.725 | LR 0.001588 
+  [Fold 5] Epoch  34 | Loss 0.154 | AvgMCC 0.599 | AvgAUC 0.879 | AvgGMean 0.749 | LR 0.001522 
+  [Fold 5] Epoch  35 | Loss 0.153 | AvgMCC 0.608 | AvgAUC 0.882 | AvgGMean 0.723 | LR 0.001454 
+  [Fold 5] Epoch  36 | Loss 0.148 | AvgMCC 0.605 | AvgAUC 0.882 | AvgGMean 0.744 | LR 0.001383 
+  [Fold 5] Epoch  37 | Loss 0.137 | AvgMCC 0.630 | AvgAUC 0.886 | AvgGMean 0.752 | LR 0.001309 
+  [Fold 5] Epoch  38 | Loss 0.140 | AvgMCC 0.620 | AvgAUC 0.883 | AvgGMean 0.739 | LR 0.001233 
+  [Fold 5] Epoch  39 | Loss 0.134 | AvgMCC 0.631 | AvgAUC 0.884 | AvgGMean 0.764 | LR 0.001156 
+  [Fold 5] Epoch  40 | Loss 0.128 | AvgMCC 0.634 | AvgAUC 0.883 | AvgGMean 0.770 | LR 0.001078 
+  [Fold 5] Epoch  41 | Loss 0.126 | AvgMCC 0.630 | AvgAUC 0.881 | AvgGMean 0.759 | LR 0.001000 | α=['0.268', '0.396', '0.624', '0.267', '0.267', '0.268', '0.623', '0.624', '0.398', '0.399']
+  [Fold 5] Epoch  42 | Loss 0.123 | AvgMCC 0.641 | AvgAUC 0.884 | AvgGMean 0.764 | LR 0.000922 
+  [Fold 5] Epoch  43 | Loss 0.116 | AvgMCC 0.642 | AvgAUC 0.885 | AvgGMean 0.766 | LR 0.000844 
+  [Fold 5] Epoch  44 | Loss 0.115 | AvgMCC 0.645 | AvgAUC 0.886 | AvgGMean 0.777 | LR 0.000767 
+  [Fold 5] Epoch  45 | Loss 0.110 | AvgMCC 0.638 | AvgAUC 0.888 | AvgGMean 0.766 | LR 0.000691 
+  [Fold 5] Epoch  46 | Loss 0.111 | AvgMCC 0.654 | AvgAUC 0.888 | AvgGMean 0.778 | LR 0.000617 
+  [Fold 5] Epoch  47 | Loss 0.106 | AvgMCC 0.648 | AvgAUC 0.890 | AvgGMean 0.770 | LR 0.000546 
+  [Fold 5] Epoch  48 | Loss 0.108 | AvgMCC 0.654 | AvgAUC 0.888 | AvgGMean 0.772 | LR 0.000478 
+  [Fold 5] Epoch  49 | Loss 0.105 | AvgMCC 0.652 | AvgAUC 0.888 | AvgGMean 0.774 | LR 0.000412 
+  [Fold 5] Epoch  50 | Loss 0.104 | AvgMCC 0.653 | AvgAUC 0.890 | AvgGMean 0.781 | LR 0.000351 
+  [Fold 5] Epoch  51 | Loss 0.106 | AvgMCC 0.660 | AvgAUC 0.892 | AvgGMean 0.773 | LR 0.000293 | α=['0.269', '0.399', '0.625', '0.268', '0.268', '0.269', '0.625', '0.625', '0.400', '0.400']
+  [Fold 5] Epoch  52 | Loss 0.104 | AvgMCC 0.652 | AvgAUC 0.891 | AvgGMean 0.771 | LR 0.000240 
+  [Fold 5] Epoch  53 | Loss 0.102 | AvgMCC 0.655 | AvgAUC 0.891 | AvgGMean 0.766 | LR 0.000191 
+  [Fold 5] Epoch  54 | Loss 0.103 | AvgMCC 0.653 | AvgAUC 0.891 | AvgGMean 0.774 | LR 0.000147 
+  [Fold 5] Epoch  55 | Loss 0.103 | AvgMCC 0.657 | AvgAUC 0.890 | AvgGMean 0.774 | LR 0.000109 
+  [Fold 5] Epoch  56 | Loss 0.100 | AvgMCC 0.657 | AvgAUC 0.891 | AvgGMean 0.776 | LR 0.000076 
+  [Fold 5] Epoch  57 | Loss 0.103 | AvgMCC 0.659 | AvgAUC 0.891 | AvgGMean 0.778 | LR 0.000049 
+  [Fold 5] Epoch  58 | Loss 0.100 | AvgMCC 0.657 | AvgAUC 0.891 | AvgGMean 0.779 | LR 0.000028 
+  [Fold 5] Epoch  59 | Loss 0.104 | AvgMCC 0.658 | AvgAUC 0.891 | AvgGMean 0.780 | LR 0.000012 
+  [Fold 5] Epoch  60 | Loss 0.100 | AvgMCC 0.658 | AvgAUC 0.891 | AvgGMean 0.780 | LR 0.000003 
+  [Fold 5] Epoch  61 | Loss 0.117 | AvgMCC 0.596 | AvgAUC 0.872 | AvgGMean 0.738 | LR 0.002000 | α=['0.269', '0.398', '0.626', '0.268', '0.268', '0.268', '0.625', '0.625', '0.398', '0.399']
+  [Fold 5] Epoch  62 | Loss 0.151 | AvgMCC 0.582 | AvgAUC 0.860 | AvgGMean 0.739 | LR 0.001999 
+  [Fold 5] Epoch  63 | Loss 0.157 | AvgMCC 0.588 | AvgAUC 0.863 | AvgGMean 0.728 | LR 0.001997 
+  [Fold 5] Epoch  64 | Loss 0.158 | AvgMCC 0.581 | AvgAUC 0.873 | AvgGMean 0.719 | LR 0.001993 
+  [Fold 5] Epoch  65 | Loss 0.155 | AvgMCC 0.605 | AvgAUC 0.876 | AvgGMean 0.765 | LR 0.001988 
+  [Fold 5] Epoch  66 | Loss 0.149 | AvgMCC 0.600 | AvgAUC 0.878 | AvgGMean 0.762 | LR 0.001981 
+  [Fold 5] Epoch  67 | Loss 0.141 | AvgMCC 0.625 | AvgAUC 0.883 | AvgGMean 0.759 | LR 0.001972 
+  [Fold 5] Epoch  68 | Loss 0.138 | AvgMCC 0.625 | AvgAUC 0.887 | AvgGMean 0.779 | LR 0.001962 
+  [Fold 5] Epoch  69 | Loss 0.123 | AvgMCC 0.648 | AvgAUC 0.892 | AvgGMean 0.789 | LR 0.001951 
+  [Fold 5] Epoch  70 | Loss 0.126 | AvgMCC 0.641 | AvgAUC 0.888 | AvgGMean 0.775 | LR 0.001938 
+  [Fold 5] Epoch  71 | Loss 0.121 | AvgMCC 0.657 | AvgAUC 0.892 | AvgGMean 0.775 | LR 0.001924 | α=['0.268', '0.397', '0.625', '0.268', '0.267', '0.268', '0.623', '0.624', '0.398', '0.399']
+  [Fold 5] Epoch  72 | Loss 0.120 | AvgMCC 0.645 | AvgAUC 0.893 | AvgGMean 0.774 | LR 0.001908 
+  [Fold 5] Epoch  73 | Loss 0.123 | AvgMCC 0.650 | AvgAUC 0.894 | AvgGMean 0.767 | LR 0.001891 
+  [Fold 5] Epoch  74 | Loss 0.120 | AvgMCC 0.650 | AvgAUC 0.897 | AvgGMean 0.793 | LR 0.001872 
+  [Fold 5] Epoch  75 | Loss 0.114 | AvgMCC 0.656 | AvgAUC 0.894 | AvgGMean 0.783 | LR 0.001853 
+  [Fold 5] Epoch  76 | Loss 0.111 | AvgMCC 0.655 | AvgAUC 0.890 | AvgGMean 0.772 | LR 0.001831 
+  [Fold 5] Epoch  77 | Loss 0.106 | AvgMCC 0.664 | AvgAUC 0.899 | AvgGMean 0.780 | LR 0.001809 
+  [Fold 5] Epoch  78 | Loss 0.109 | AvgMCC 0.655 | AvgAUC 0.897 | AvgGMean 0.781 | LR 0.001785 
+  [Fold 5] Epoch  79 | Loss 0.111 | AvgMCC 0.657 | AvgAUC 0.889 | AvgGMean 0.778 | LR 0.001760 
+  [Fold 5] Epoch  80 | Loss 0.107 | AvgMCC 0.650 | AvgAUC 0.892 | AvgGMean 0.781 | LR 0.001734 
+  [Fold 5] Epoch  81 | Loss 0.106 | AvgMCC 0.655 | AvgAUC 0.890 | AvgGMean 0.788 | LR 0.001707 | α=['0.269', '0.399', '0.626', '0.268', '0.268', '0.269', '0.625', '0.625', '0.399', '0.400']
+  [Fold 5] Epoch  82 | Loss 0.102 | AvgMCC 0.667 | AvgAUC 0.897 | AvgGMean 0.774 | LR 0.001679 
+  [Fold 5] Epoch  83 | Loss 0.103 | AvgMCC 0.660 | AvgAUC 0.896 | AvgGMean 0.789 | LR 0.001649 
+  [Fold 5] Epoch  84 | Loss 0.101 | AvgMCC 0.659 | AvgAUC 0.898 | AvgGMean 0.778 | LR 0.001619 
+  [Fold 5] Epoch  85 | Loss 0.101 | AvgMCC 0.665 | AvgAUC 0.898 | AvgGMean 0.781 | LR 0.001588 
+  [Fold 5] Epoch  86 | Loss 0.100 | AvgMCC 0.671 | AvgAUC 0.894 | AvgGMean 0.784 | LR 0.001556 
+  [Fold 5] Epoch  87 | Loss 0.103 | AvgMCC 0.676 | AvgAUC 0.895 | AvgGMean 0.795 | LR 0.001522 
+  [Fold 5] Epoch  88 | Loss 0.104 | AvgMCC 0.671 | AvgAUC 0.897 | AvgGMean 0.795 | LR 0.001489 
+  [Fold 5] Epoch  89 | Loss 0.106 | AvgMCC 0.662 | AvgAUC 0.894 | AvgGMean 0.786 | LR 0.001454 
+  [Fold 5] Epoch  90 | Loss 0.100 | AvgMCC 0.671 | AvgAUC 0.897 | AvgGMean 0.799 | LR 0.001419 
+  [Fold 5] Epoch  91 | Loss 0.096 | AvgMCC 0.660 | AvgAUC 0.897 | AvgGMean 0.797 | LR 0.001383 | α=['0.269', '0.399', '0.626', '0.269', '0.269', '0.269', '0.625', '0.626', '0.400', '0.400']
+  [Fold 5] Epoch  92 | Loss 0.098 | AvgMCC 0.673 | AvgAUC 0.897 | AvgGMean 0.790 | LR 0.001346 
+  [Fold 5] Epoch  93 | Loss 0.095 | AvgMCC 0.657 | AvgAUC 0.897 | AvgGMean 0.788 | LR 0.001309 
+  [Fold 5] Epoch  94 | Loss 0.098 | AvgMCC 0.672 | AvgAUC 0.901 | AvgGMean 0.788 | LR 0.001271 
+  [Fold 5] Epoch  95 | Loss 0.095 | AvgMCC 0.678 | AvgAUC 0.899 | AvgGMean 0.804 | LR 0.001233 
+  [Fold 5] Epoch  96 | Loss 0.098 | AvgMCC 0.683 | AvgAUC 0.900 | AvgGMean 0.808 | LR 0.001195 
+  [Fold 5] Epoch  97 | Loss 0.097 | AvgMCC 0.675 | AvgAUC 0.902 | AvgGMean 0.785 | LR 0.001156 
+  [Fold 5] Epoch  98 | Loss 0.095 | AvgMCC 0.673 | AvgAUC 0.897 | AvgGMean 0.799 | LR 0.001118 
+  [Fold 5] Epoch  99 | Loss 0.099 | AvgMCC 0.676 | AvgAUC 0.896 | AvgGMean 0.799 | LR 0.001078 
+  [Fold 5] Epoch 100 | Loss 0.097 | AvgMCC 0.674 | AvgAUC 0.897 | AvgGMean 0.802 | LR 0.001039 
+  [Fold 5] Epoch 101 | Loss 0.094 | AvgMCC 0.670 | AvgAUC 0.896 | AvgGMean 0.797 | LR 0.001000 | α=['0.269', '0.399', '0.626', '0.269', '0.269', '0.269', '0.626', '0.626', '0.400', '0.400']
+  [Fold 5] Epoch 102 | Loss 0.096 | AvgMCC 0.669 | AvgAUC 0.899 | AvgGMean 0.794 | LR 0.000961 
+  [Fold 5] Epoch 103 | Loss 0.092 | AvgMCC 0.672 | AvgAUC 0.900 | AvgGMean 0.792 | LR 0.000922 
+  [Fold 5] Epoch 104 | Loss 0.095 | AvgMCC 0.677 | AvgAUC 0.899 | AvgGMean 0.790 | LR 0.000882 
+  [Fold 5] Epoch 105 | Loss 0.092 | AvgMCC 0.669 | AvgAUC 0.900 | AvgGMean 0.805 | LR 0.000844 
+  [Fold 5] Epoch 106 | Loss 0.094 | AvgMCC 0.670 | AvgAUC 0.902 | AvgGMean 0.788 | LR 0.000805 
+  [Fold 5] Epoch 107 | Loss 0.093 | AvgMCC 0.671 | AvgAUC 0.900 | AvgGMean 0.801 | LR 0.000767 
+  [Fold 5] Epoch 108 | Loss 0.095 | AvgMCC 0.669 | AvgAUC 0.899 | AvgGMean 0.787 | LR 0.000729 
+  [Fold 5] Epoch 109 | Loss 0.094 | AvgMCC 0.674 | AvgAUC 0.900 | AvgGMean 0.783 | LR 0.000691 
+  [Fold 5] Epoch 110 | Loss 0.094 | AvgMCC 0.671 | AvgAUC 0.901 | AvgGMean 0.797 | LR 0.000654 
+  [Fold 5] Epoch 111 | Loss 0.093 | AvgMCC 0.676 | AvgAUC 0.901 | AvgGMean 0.796 | LR 0.000617 | α=['0.269', '0.400', '0.626', '0.269', '0.269', '0.269', '0.626', '0.626', '0.400', '0.400']
+  [Fold 5] Epoch 112 | Loss 0.092 | AvgMCC 0.675 | AvgAUC 0.901 | AvgGMean 0.793 | LR 0.000581 
+  [Fold 5] Epoch 113 | Loss 0.095 | AvgMCC 0.675 | AvgAUC 0.901 | AvgGMean 0.792 | LR 0.000546 
+  [Fold 5] Epoch 114 | Loss 0.087 | AvgMCC 0.673 | AvgAUC 0.900 | AvgGMean 0.793 | LR 0.000511 
+  [Fold 5] Epoch 115 | Loss 0.093 | AvgMCC 0.672 | AvgAUC 0.900 | AvgGMean 0.797 | LR 0.000478 
+  [Fold 5] Epoch 116 | Loss 0.090 | AvgMCC 0.672 | AvgAUC 0.903 | AvgGMean 0.793 | LR 0.000444 
+  [Fold 5] Epoch 117 | Loss 0.091 | AvgMCC 0.674 | AvgAUC 0.903 | AvgGMean 0.791 | LR 0.000412 
+  [Fold 5] Epoch 118 | Loss 0.088 | AvgMCC 0.680 | AvgAUC 0.904 | AvgGMean 0.787 | LR 0.000381 
+  [Fold 5] Epoch 119 | Loss 0.092 | AvgMCC 0.674 | AvgAUC 0.903 | AvgGMean 0.783 | LR 0.000351 
+  [Fold 5] Epoch 120 | Loss 0.092 | AvgMCC 0.676 | AvgAUC 0.902 | AvgGMean 0.787 | LR 0.000321 
+  [Fold 5] Epoch 121 | Loss 0.092 | AvgMCC 0.672 | AvgAUC 0.904 | AvgGMean 0.783 | LR 0.000293 | α=['0.269', '0.400', '0.626', '0.269', '0.269', '0.269', '0.626', '0.626', '0.400', '0.400']
+  [Fold 5] Epoch 122 | Loss 0.090 | AvgMCC 0.675 | AvgAUC 0.904 | AvgGMean 0.790 | LR 0.000266 
+  [Fold 5] Epoch 123 | Loss 0.092 | AvgMCC 0.677 | AvgAUC 0.903 | AvgGMean 0.790 | LR 0.000240 
+  [Fold 5] Epoch 124 | Loss 0.090 | AvgMCC 0.677 | AvgAUC 0.903 | AvgGMean 0.794 | LR 0.000215 
+  [Fold 5] Epoch 125 | Loss 0.089 | AvgMCC 0.677 | AvgAUC 0.904 | AvgGMean 0.786 | LR 0.000191 
+  [Fold 5] Epoch 126 | Loss 0.091 | AvgMCC 0.677 | AvgAUC 0.904 | AvgGMean 0.792 | LR 0.000169 
+
+  🛑 Early stop at Epoch 126, best was Epoch 96
+
+  ✅ Fold 5 BEST AvgValMCC=0.6833 at Epoch 96
+     Ab: ValMCC=0.576 TestMCC=0.506 α=0.269 target=0.25
+     Bs: ValMCC=0.649 TestMCC=0.709 α=0.400 target=0.40
+     Ec: ValMCC=0.636 TestMCC=0.635 α=0.626 target=0.65
+     Ef: ValMCC=0.644 TestMCC=0.528 α=0.269 target=0.25
+     Kp: ValMCC=0.696 TestMCC=0.625 α=0.269 target=0.25
+     Ml: ValMCC=0.752 TestMCC=0.712 α=0.269 target=0.25
+     Pa: ValMCC=0.673 TestMCC=0.700 α=0.626 target=0.65
+     Sa: ValMCC=0.689 TestMCC=0.640 α=0.626 target=0.65
+     Se: ValMCC=0.706 TestMCC=0.747 α=0.401 target=0.40
+     St: ValMCC=0.749 TestMCC=0.751 α=0.400 target=0.40
+
+================================================================================
+           📊 5-FOLD TEST AVG RESULTS
+================================================================================
+Bacteria  Test_MCC_mean  Test_MCC_std  Test_AUC_mean  Test_AUC_std  Test_GMean_mean  Alpha_std
+      Ab         0.4868        0.0649         0.8316        0.0367           0.6044     0.0010
+      Bs         0.6689        0.0349         0.9020        0.0228           0.8133     0.0029
+      Ec         0.5901        0.0825         0.8875        0.0317           0.7733     0.0014
+      Ef         0.5068        0.0597         0.8202        0.0250           0.6758     0.0013
+      Kp         0.6234        0.0665         0.8652        0.0299           0.7463     0.0014
+      Ml         0.6535        0.0389         0.9164        0.0137           0.7835     0.0014
+      Pa         0.6781        0.0520         0.8978        0.0267           0.8319     0.0017
+      Sa         0.6094        0.0549         0.8816        0.0263           0.7676     0.0014
+      Se         0.7348        0.0581         0.9276        0.0248           0.8598     0.0019
+      St         0.7133        0.0772         0.9263        0.0272           0.8047     0.0012
+
+================================================================================
+           🎯 INDEPENDENT TEST RESULTS (Best Fold: 1/5)
+================================================================================
+Bacteria  Test_Accuracy  Test_Sensitivity  Test_Specificity  Test_GMean  Test_MCC  Test_AUC  Test_F1  Final_Alpha  Target_Alpha
+      Ab         0.9499            0.2692            0.9986      0.5185    0.4865    0.8421   0.4179       0.2691          0.25
+      Bs         0.8742            0.6481            0.9707      0.7931    0.6903    0.9150   0.7550       0.4002          0.40
+      Ec         0.9371            0.9784            0.5904      0.7600    0.6391    0.8877   0.9653       0.6261          0.65
+      Ef         0.9127            0.5579            0.9620      0.7326    0.5636    0.8507   0.6092       0.2690          0.25
+      Kp         0.9255            0.7037            0.9613      0.8225    0.6812    0.8955   0.7238       0.2691          0.25
+      Ml         0.9268            0.7692            0.9477      0.8538    0.6716    0.9313   0.7107       0.2691          0.25
+      Pa         0.8626            0.8102            0.9111      0.8592    0.7268    0.9104   0.8499       0.6258          0.65
+      Sa         0.8780            0.9289            0.7011      0.8070    0.6423    0.8941   0.9221       0.6261          0.65
+      Se         0.9345            0.7938            0.9709      0.8779    0.7937    0.9487   0.8328       0.4002          0.40
+      St         0.9409            0.6609            0.9895      0.8086    0.7477    0.9434   0.7677       0.4003          0.40
+
+================================================================================
+           🔧 LEARNED ADAPTIVE WEIGHTS (α per Bacteria)
+================================================================================
+  Ab: α = 0.269  (target=0.25)
+  Bs: α = 0.400  (target=0.40)
+  Ec: α = 0.626  (target=0.65)
+  Ef: α = 0.269  (target=0.25)
+  Kp: α = 0.269  (target=0.25)
+  Ml: α = 0.269  (target=0.25)
+  Pa: α = 0.626  (target=0.65)
+  Sa: α = 0.626  (target=0.65)
+  Se: α = 0.400  (target=0.40)
+  St: α = 0.400  (target=0.40)
+
+--------------------------------------------------
+TEST SUMMARY (Best Fold):
+  Mean MCC:   0.6643 ± 0.0891
+  Mean AUC:   0.9019 ± 0.0358
+  Mean GMean: 0.7833
+  Mean Sen:   0.7120
+  Mean Spe:   0.9003
+  Best Fold:   1/5
+--------------------------------------------------
+
+--------------------------------------------------
+5-FOLD TEST AVG SUMMARY (for thesis):
+  Mean MCC:   0.6265 ± 0.0816
+  Mean AUC:   0.8856 ± 0.0371
+  Mean GMean: 0.7661
+  α Diversity (mean std): 0.0016
+--------------------------------------------------
+
+✅ Saved to /autodl-fs/data/results/v6_mtl_learnable_adaptive

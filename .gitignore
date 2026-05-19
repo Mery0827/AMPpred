@@ -1,0 +1,45 @@
+# Python缓存
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+
+# 大模型文件（绝对不能传GitHub）
+*.bin
+*.pth
+*.pt
+*.ckpt
+*.pkl
+*.h5
+
+# 数据集（只保留说明）
+dataset/**/*.csv
+!dataset/**/README.md
+
+# 特征文件（运行后生成）
+feature_extract/**/*.pkl
+feature_extract/**/*.npy
+
+# 结果输出
+results/
+outputs/
+*.log
+
+# IDE
+.idea/
+.vscode/
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# ESM-2 预训练权重（需自行下载，体积大）
+Rostlab/
+
+# 提取后的特征文件（.npy 在 dataset 各子目录下）
+dataset/**/features/
+dataset/**/*.npy
+
+# 训练保存的模型检查点
+checkpoints/
+*.safetensors
